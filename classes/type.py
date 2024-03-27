@@ -2,7 +2,7 @@
 # Import the generic class
 from classes.gclass import Gclass
 
-class Participant(Gclass):
+class Type(Gclass):
     obj = dict()
     lst = list()
     pos = 0
@@ -22,8 +22,8 @@ class Participant(Gclass):
         self._code = code
         self._type = eventtype
         # Add the new object to the Participant list
-        Participant.obj[code] = self
-        Participant.lst.append(code)
+        Type.obj[code] = self
+        Type.lst.append(code)
     # Object properties
     # getter methodes
     # code property getter method
@@ -38,3 +38,5 @@ class Participant(Gclass):
     @eventtype.setter
     def eventtype(self, tipo):
         self._type = tipo
+        
+
