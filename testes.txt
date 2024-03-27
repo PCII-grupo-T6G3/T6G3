@@ -3,9 +3,9 @@ print(e1)
 e2 = Event('None','Prépara','20-3-2024','20:30','','10')
 print(e2)
 
-p1 = Participant('202307542','Afonso',1,919402850)
+p1 = Participant('202307542','Afonso',919402850)
 print(p1)
-p2 = Participant('202307834','Mateus Ferreira',1,123456789)
+p2 = Participant('202307834','Mateus Ferreira',123456789)
 print(p2)
 
 r1 = Registration('1','202307542')
