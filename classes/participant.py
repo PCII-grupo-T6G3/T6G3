@@ -19,7 +19,7 @@ class Participant(Gclass):
     def __init__(self, code,name,year,phone):
         super().__init__()
         # Object attributes
-        self._code = code
+        self._code = str(code)
         self._name = name
         self._year = int(year)
         self._phone = phone

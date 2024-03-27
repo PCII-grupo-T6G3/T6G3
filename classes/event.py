@@ -11,7 +11,7 @@ class Event(Gclass):
     auto_number = 1 # = 1 in case of auto number on
     nkey = 1
     # class attributes, identifier attribute must be the first one on the list
-    att = ['_code','_name','_datetime','_info','_slots']
+    att = ['_code','_name','_dt','_info','_slots']
     # Class header title
     header = 'Events'
     # field description for use in, for example, in input form
@@ -30,8 +30,12 @@ class Event(Gclass):
         self._code = code
         self._name = name
         dl = date.split('-')
+        for i in range(len(dl)):
+            dl[i] = int(dl[i])
         tl = time.split(':')
-        self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1],tl[2])
+        for i in range(len(tl)):
+            tl[i] = int(tl[i])
+        self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
         self._info = info
         self._slots = int(slots)
         # Add the new object to the Event list
@@ -55,7 +59,7 @@ class Event(Gclass):
     def dt(self, date, time):
         dl = date.split('-')
         tl = time.split(':')
-        self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1],tl[2])
+        self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
     # info property getter method
     @property
     def info(self):
