@@ -28,31 +28,33 @@ class Venue(Gclass):
             else:
                 code = str(max(map(int, Venue.getatlist('_code'))) + 1)
         # Object attributes
-        self._code = code
+        self._code = str(code)
         self._name = name
         self._location = location
         self._capacity = int(capacity)
         # Add the new object to the Venue list
-        Venue.obj[code] = self
-        Venue.lst.append(code)
+        Venue.obj[str(code)] = self
+        Venue.lst.append(str(code))
 
     # Object properties
     @property
     def code(self):
         return self._code
-
     @property
     def name(self):
         return self._name
-
+    @name.setter
+    def name(self, name):
+        self._name = name
     @property
     def location(self):
         return self._location
-
+    @location.setter
+    def location(self, location):
+        self._location = location
     @property
     def capacity(self):
         return self._capacity
-
     @capacity.setter
     def capacity(self, capacity):
         self._capacity = capacity

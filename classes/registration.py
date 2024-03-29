@@ -9,9 +9,11 @@ class Registration(Gclass):
     pos = 0
     sortkey = ''
     auto_number = 0
-    nkey = 1
+    nkey = 1 # Devia ser 2??
     # class attributes, identifier attribute must be the first one on the list
-    att = ['_registration_code', '_event_code', '_participant_code']
+    # !!! se quisermos só imprimir o bilhete, retirar últimos 2 att
+    # !!! ou então especificar que só sai o ticket
+    att = ['_event_code', '_participant_code', '_ticket']
     # Class header title
     header = 'Registration'
     # field description for use in, for example, in input form
@@ -24,9 +26,9 @@ class Registration(Gclass):
         if participant_code in Participant.lst and event_code in Event.lst:
             self._event_code = event_code
             self._participant_code = participant_code
-            self._registration_code = event_code + participant_code
-            Registration.obj[self._registration_code] = self
-            Registration.lst.append(self._registration_code)
+            self._ticket = event_code + participant_code
+            Registration.obj[self._ticket] = self
+            Registration.lst.append(self._ticket)
         elif participant_code not in Participant.lst and event_code in Event.lst:
             print('Participant ', participant_code, ' not found')
         elif participant_code in Participant.lst and event_code not in Event.lst:
@@ -41,10 +43,11 @@ class Registration(Gclass):
     def participant_code(self):
         return self._participant_code
     @property
-    def registration_code(self):
-        return self._registration_code
+    def ticket(self):
+        return self._ticket
     
 # Coisas que mudámos da classe do professor:
 # 1. juntámos os códigos das classes evento e participante
 # 2. verificámos a integridade para ambos o evento e o participante
 # 3. não incluímos um setter para os códigos do evento e do participante
+# 4. mudámos o nkey para 2

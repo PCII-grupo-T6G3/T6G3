@@ -2,6 +2,8 @@
 
 from classes.gclass import Gclass
 from classes.registration import Registration
+from classes.event import Event
+from classes.participant import Participant
 
 class Feedback(Gclass):
     obj = dict()
