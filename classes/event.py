@@ -14,6 +14,7 @@ class Event(Gclass):
     nkey = 1
     # class attributes, identifier attribute must be the first one on the list
     att = ['_code','_name','_dt','_info','_slots','_venue_code','_type_code']
+    att2 = ['_code','_name','_dt','_info','_slots','_venue_name','_type_name']
     # Class header title
     header = 'Events'
     # field description for use in, for example, in input form
@@ -40,47 +41,48 @@ class Event(Gclass):
             tl[i] = int(tl[i])
         self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
         self._info = info
-        self._slots = int(slots)
         
         if venue_code in Venue.obj.keys():
-            self._venue_code = Venue.obj[str(venue_code)]
+            self._venue = Venue.obj[str(venue_code)]
+            self._venue_code = venue_code
+            self._venue_name = self._venue.name
         else:
             print('Venue not found!')
         if type_code in Type.obj.keys():
-            self._type_code = Type.obj[str(type_code)]
+            self._type = Type.obj[str(type_code)]
+            self._type_code = type_code
+            self._type_name = self._type.name
         else:
             print('Type not found!')
+            
+        if slots <= self._venue.capacity:
+            self._slots = int(slots)
+        else:
+            print('Venue not big enough for event slots!')
+        
+        self._used_slots = 0
 
         # Add the new object to the Event list
         Event.obj[code] = self
         Event.lst.append(code)
     # Object properties
-    # code property getter method
     @property
     def code(self):
         return self._code
-    # name property getter method
     @property
     def name(self):
         return self._name
-    # dt property getter method
     @property
     def dt(self):
         return self._dt
-    # dt property setter method
     @dt.setter
     def dt(self, date, time):
         dl = date.split('-')
         tl = time.split(':')
         self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
-    # info property getter method
     @property
     def info(self):
         return self._info
-    # info property setter method
-    @info.setter
-    def info(self, info):
-        self._info = info
     @property
     def slots(self):
         return self._slots
@@ -89,7 +91,7 @@ class Event(Gclass):
         self._slots = slots
     @property
     def venue_code(self):
-        return self._venue
+        return self._venue_code
     @venue_code.setter
     def venue_code(self, venue_code):
         if venue_code in Venue.obj.keys():
@@ -105,6 +107,7 @@ class Event(Gclass):
             self._event_type = Type.obj[str(type_code)]
         else:
             print('Type not found!')
+<<<<<<< Updated upstream
             
 
             
@@ -116,3 +119,14 @@ e1 = Event('None','TAS','27-3-2024','11:00','Torneio de Futsal','8',\
 '1','01')
 print(e1)
 
+=======
+    
+    # Overload do método str da Gclass para escrever
+    # o nome do venue e do type em vez do código
+    def __str__(self):
+        strprint = "f'"
+        for att2 in type(self).att2:
+            strprint += '{self.' + att2 + '};'
+        strprint = strprint[:-1] + "'"
+        return eval(strprint) 
+>>>>>>> Stashed changes

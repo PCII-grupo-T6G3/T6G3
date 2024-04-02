@@ -32,8 +32,8 @@ class Type(Gclass):
         return self._code
     # name property getter method
     @property
-    def type_name(self):
+    def name(self):
         return self._type_name
-    @type_name.setter
-    def type_name(self, tipo):
+    @name.setter
+    def name(self, tipo):
         self._type = tipo

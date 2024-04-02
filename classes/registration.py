@@ -23,8 +23,10 @@ class Registration(Gclass):
         super().__init__()
         
         # verifica integridade do evento e do participante
-        if participant_code in Participant.lst and event_code in Event.lst:
+        if participant_code in Participant.lst and event_code in Event.lst: 
             self._event_code = event_code
+            # self._event = Event.obj[event_code]
+            # FALTA associar used slots à inscrição (aumentar contagem se slots não cheias)
             self._participant_code = participant_code
             self._ticket = event_code + participant_code
             Registration.obj[self._ticket] = self
