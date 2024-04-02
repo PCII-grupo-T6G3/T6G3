@@ -106,6 +106,8 @@ class Event(Gclass):
         else:
             print('Type not found!')
             
+
+            
 v1 = Venue('None', 'Pavilhão da Areosa', 'Areosa', '100')
 print(v1)
 t1 = Type('01','Desporto')
@@ -113,3 +115,4 @@ print(t1)
 e1 = Event('None','TAS','27-3-2024','11:00','Torneio de Futsal','8',\
 '1','01')
 print(e1)
+
