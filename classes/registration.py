@@ -1,7 +1,7 @@
 # Class Registration
 from classes.gclass import Gclass
-from classes.participant import Participant
-from classes.event import Event
+from classes.Participant import Participant
+from classes.Event import Event
 
 class Registration(Gclass):
     obj = dict()

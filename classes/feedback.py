@@ -1,9 +1,9 @@
 # Class Feedback
 
 from classes.gclass import Gclass
-from classes.registration import Registration
-from classes.event import Event
-from classes.participant import Participant
+from classes.Registration import Registration
+from classes.Event import Event
+from classes.Participant import Participant
 
 class Feedback(Gclass):
     obj = dict()
