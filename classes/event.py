@@ -55,11 +55,13 @@ class Event(Gclass):
         else:
             print('Type not found!')
             
-        if slots <= self._venue.capacity:
+        if int(slots) <= self._venue.capacity:
             self._slots = int(slots)
         else:
-            print('Venue not big enough for event slots!')
-        
+            while int(slots) > self._venue.capacity:
+                slots = input('Venue not big enough for event slots! Try again: ')
+            self._slots = int(slots)
+                      
         self._used_slots = 0
 
         # Add the new object to the Event list
@@ -88,7 +90,12 @@ class Event(Gclass):
         return self._slots
     @slots.setter
     def slots(self, slots):
-        self._slots = slots
+        if int(slots) <= self._venue.capacity:
+            self._slots = int(slots)
+        else:
+            while int(slots) > self._venue.capacity:
+                slots = input('Venue not big enough for event slots! Try again: ')
+            self._slots = int(slots)
     @property
     def venue_code(self):
         return self._venue_code
@@ -115,4 +122,4 @@ class Event(Gclass):
         for att2 in type(self).att2:
             strprint += '{self.' + att2 + '};'
         strprint = strprint[:-1] + "'"
-        return eval(strprint) 
+        return eval(strprint)

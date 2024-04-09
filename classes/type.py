@@ -37,3 +37,5 @@ class Type(Gclass):
     @name.setter
     def name(self, tipo):
         self._type = tipo
+        
+# A ACRESCENTAR: se crio um novo type cujo código já existe, deve dar um erro
