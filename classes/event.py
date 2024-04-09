@@ -107,19 +107,6 @@ class Event(Gclass):
             self._event_type = Type.obj[str(type_code)]
         else:
             print('Type not found!')
-<<<<<<< Updated upstream
-            
-
-            
-v1 = Venue('None', 'Pavilhão da Areosa', 'Areosa', '100')
-print(v1)
-t1 = Type('01','Desporto')
-print(t1)
-e1 = Event('None','TAS','27-3-2024','11:00','Torneio de Futsal','8',\
-'1','01')
-print(e1)
-
-=======
     
     # Overload do método str da Gclass para escrever
     # o nome do venue e do type em vez do código
@@ -129,4 +116,3 @@ print(e1)
             strprint += '{self.' + att2 + '};'
         strprint = strprint[:-1] + "'"
         return eval(strprint) 
->>>>>>> Stashed changes
