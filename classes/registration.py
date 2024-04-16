@@ -11,10 +11,8 @@ class Registration(Gclass):
     pos = 0
     sortkey = ''
     auto_number = 0
-    nkey = 1 # Devia ser 2??
+    nkey = 2
     # class attributes, identifier attribute must be the first one on the list
-    # !!! se quisermos só imprimir o bilhete, retirar últimos 2 att
-    # !!! ou então especificar que só sai o ticket
     att = ['_event_code', '_participant_code', '_ticket']
     # Class header title
     header = 'Registration'

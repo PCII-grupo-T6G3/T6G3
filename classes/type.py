@@ -19,23 +19,25 @@ class Type(Gclass):
     def __init__(self, code, type_name):
         super().__init__()
         # Object attributes
-        self._code = str(code)
-        self._type_name = type_name
-        # Add the new object to the Participant list
-        Type.obj[code] = self
-        Type.lst.append(code)
+        flag = False
+        while not flag:
+            if code not in Type.lst:
+                self._code = str(code)
+                self._type_name = type_name
+                # Add the new object to the Participant list
+                Type.obj[code] = self
+                Type.lst.append(code)
+                flag = True
+            else:
+                print('Code already used!')
+                code = input('New code: ')
     # Object properties
-    # getter methodes
-    # code property getter method
     @property
     def code(self):
         return self._code
-    # name property getter method
     @property
     def name(self):
         return self._type_name
     @name.setter
     def name(self, tipo):
         self._type = tipo
-        
-# A ACRESCENTAR: se crio um novo type cujo código já existe, deve dar um erro
