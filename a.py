@@ -9,6 +9,7 @@ from classes.Venue import Venue
 from classes.Type import Type
 from classes.gclass import Gclass
 
+Event.reset()
 Event.read("data/project.db")
 
 
