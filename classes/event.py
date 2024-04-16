@@ -39,6 +39,7 @@ class Event(Gclass):
         for i in range(len(tl)):
             tl[i] = int(tl[i])
         self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
+        self._dt = str(self._dt)
         self._info = info
         self._slots = int(slots)
         
