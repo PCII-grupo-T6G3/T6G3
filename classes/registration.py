@@ -2,6 +2,8 @@
 from classes.gclass import Gclass
 from classes.participant import Participant
 from classes.event import Event
+from classes.venue import Venue
+from classes.type import Type
 
 class Registration(Gclass):
     obj = dict()
@@ -9,10 +11,8 @@ class Registration(Gclass):
     pos = 0
     sortkey = ''
     auto_number = 0
-    nkey = 1 # Devia ser 2??
+    nkey = 2
     # class attributes, identifier attribute must be the first one on the list
-    # !!! se quisermos só imprimir o bilhete, retirar últimos 2 att
-    # !!! ou então especificar que só sai o ticket
     att = ['_event_code', '_participant_code', '_ticket']
     # Class header title
     header = 'Registration'
@@ -22,21 +22,25 @@ class Registration(Gclass):
     def __init__(self, event_code, participant_code):
         super().__init__()
         
-        # verifica integridade do evento e do participante
-        if participant_code in Participant.lst and event_code in Event.lst: 
+        # verifica se evento existe
+        if event_code in Event.lst:
             self._event_code = event_code
-            # self._event = Event.obj[event_code]
-            # FALTA associar used slots à inscrição (aumentar contagem se slots não cheias)
-            self._participant_code = participant_code
-            self._ticket = event_code + participant_code
-            Registration.obj[self._ticket] = self
-            Registration.lst.append(self._ticket)
-        elif participant_code not in Participant.lst and event_code in Event.lst:
-            print('Participant ', participant_code, ' not found')
-        elif participant_code in Participant.lst and event_code not in Event.lst:
-            print('Event ', event_code, ' not found')
+            self._event = Event.obj[event_code]
+            # verifica se evento está cheio
+            if self._event._used_slots < self._event.slots:
+                self._event._used_slots += 1
+                # verifica se participante existe
+                if participant_code in Participant.lst:
+                    self._participant_code = participant_code
+                    self._ticket = event_code + participant_code
+                    Registration.obj[self._ticket] = self
+                    Registration.lst.append(self._ticket)
+                elif participant_code not in Participant.lst and event_code in Event.lst:
+                    print('Participant ', participant_code, ' not found!')
+            else:
+                print('Event is full!')
         else:
-            print('Event', event_code, 'and participant', participant_code, 'not found')
+            print('Event ', event_code, ' not found!')
 
     @property
     def event_code(self):

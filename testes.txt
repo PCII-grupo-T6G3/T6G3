@@ -1,7 +1,18 @@
+v1 = Venue('None', 'Pavilhão da Areosa', 'Areosa', '100')
+print(v1)
+v2 = Venue('None','AEFEUP','FEUP','400')
+print(v2)
+
+t1 = Type('01','Desporto')
+print(t1)
+t2 = Type('02','Recreativo')
+print(t2)
+
 e1 = Event('None','TAS','27-3-2024','11:00','Torneio de Futsal','8',\
-'1','01') # idealmente escrevemos os nomes em vez dos códigos
+'1','01')
 print(e1)
-e2 = Event('None','Prépara','20-3-2024','20:30','','10')
+e2 = Event('None','Jantar de Curso','16-4-2024','20:30','Jantar na AE','200',\
+'2','02')
 print(e2)
 
 p1 = Participant('202307542','Afonso','919402850')
@@ -12,11 +23,5 @@ print(p2)
 r1 = Registration('1','202307542')
 print(r1)
 
-v1 = Venue('None', 'Pavilhão da Areosa', 'Areosa', '100')
-print(v1)
-
-t1 = Type('01','Desporto')
-print(t1)
-
-f1 = Feedback(r1.registration_code, 'Foi do caralho!')
+f1 = Feedback(r1.registration_code, 'Foi brutal!')
 print(f1)
