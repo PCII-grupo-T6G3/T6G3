@@ -8,7 +8,7 @@
 # import sys
 import bcrypt
 # Import the generic class
-from classes.gclass import Gclass
+from classes.Gclass import Gclass
 
 class Userlogin(Gclass):
     obj = dict()

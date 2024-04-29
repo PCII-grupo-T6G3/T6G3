@@ -1,6 +1,6 @@
 # Class Event
 # Import the generic class
-from classes.gclass import Gclass
+from classes.Gclass import Gclass
 import datetime
 from classes.Venue import Venue
 from classes.Type import Type
