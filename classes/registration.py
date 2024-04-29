@@ -1,9 +1,9 @@
 # Class Registration
-from classes.gclass import Gclass
-from classes.participant import Participant
-from classes.event import Event
-from classes.venue import Venue
-from classes.type import Type
+from classes.Gclass import Gclass
+from classes.Participant import Participant
+from classes.Event import Event
+from classes.Venue import Venue
+from classes.Type import Type
 
 class Registration(Gclass):
     obj = dict()

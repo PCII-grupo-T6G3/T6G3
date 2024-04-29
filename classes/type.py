@@ -1,6 +1,6 @@
 # Event Type
 # Import the generic class
-from classes.gclass import Gclass
+from classes.Gclass import Gclass
 
 class Type(Gclass):
     obj = dict()
