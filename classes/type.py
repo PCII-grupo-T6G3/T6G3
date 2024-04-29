@@ -40,4 +40,5 @@ class Type(Gclass):
         return self._type_name
     @name.setter
     def name(self, tipo):
-        self._type = tipo
+        self._type_name = tipo
+    
