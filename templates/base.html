@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer order demo PCII</title>
+    {% block title %}
+    {% endblock %}
+  </head>
+    <body>
+        <nav>
+            <ul class="menu">
+                {% if ulogin == None %}
+                    <li><a class="button" href="/login">Login</a></li>
+                {% else %}
+                    <li><a class="button" href="/logoff">Logoff</a></li>
+                    <li><a class="button" href="/gform/Customer">Customer</a></li>
+                    
+                    <li><a class="button" href="/submenu?subm=product">Product</a></li>
+                    <li><a class="button" href="/submenu?subm=order">Order</a></li>
+                    
+                    
+                    
+                    <li><a class="button" style="color:lightblue">User: {{ulogin}}</a></li>
+                    
+                    <br><br>
+                    {% if submenu == "order" %}
+                        <li><a class="button" href="/subform/CustomerOrder_OrderProduct?option=''&subm=order">Order lines</a></li>
+                        <li><a class="button" href="/order/mapa?option=''">Mapa encomendas</a></li>
+                    {% endif %} 
+                    
+                    {% if submenu == "product" %}
+                        <li><a class="button" href="/gform/Product?subm=product">Product</a></li>
+                        <li><a class="button" href="/productform?subm=product">Product(foto)</a></li>
+                    {% endif %} 
+                    
+                {% endif %}
+            </ul>
+        </nav>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
