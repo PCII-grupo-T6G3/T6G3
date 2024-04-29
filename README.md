@@ -1,1 +1,3 @@
-Trabalho de PCII do grupo 3, turma 6. Ano 2023-2024.
+O nosso trabalho vai ter 20, ou eu não me chamo Carlos Alberto Conceição António
+bom dia
+xxx

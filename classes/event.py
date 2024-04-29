@@ -2,8 +2,8 @@
 # Import the generic class
 from classes.gclass import Gclass
 import datetime
-from classes.venue import Venue
-from classes.type import Type
+from classes.Venue import Venue
+from classes.Type import Type
 
 class Event(Gclass):
     obj = dict()
@@ -13,12 +13,12 @@ class Event(Gclass):
     auto_number = 1 # = 1 in case of auto number on
     nkey = 1
     # class attributes, identifier attribute must be the first one on the list
-    att = ['_code','_name','_dt','_info','_slots','_venue_code','_type_code']
-    att2 = ['_code','_name','_dt','_info','_slots','_venue_name','_type_name']
+    att = ['_code','_name','_date', '_time','_info','_slots','_venue_code','_type_code']
+    att2 = ['_code','_name','_date','_time','_info','_slots','_venue_name','_type_name']
     # Class header title
     header = 'Events'
     # field description for use in, for example, in input form
-    des = ['Code','Name','Date and Time','Description','Available Slots',\
+    des = ['Code','Name','Date', 'Time','Description','Available Slots',\
            'Venue','Type']
     # Constructor: Called when an object is instantiated
     def __init__(self, code, name, date, time, info, slots, venue_code, type_code):
@@ -33,13 +33,16 @@ class Event(Gclass):
         # Object attributes
         self._code = code
         self._name = name
-        dl = date.split('-')
-        for i in range(len(dl)):
-            dl[i] = int(dl[i])
-        tl = time.split(':')
-        for i in range(len(tl)):
-            tl[i] = int(tl[i])
-        self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
+        self._date = date
+        self._time = time
+        # dl = date.split('-')
+        # for i in range(len(dl)):
+        #     dl[i] = int(dl[i])
+        # tl = time.split(':')
+        # for i in range(len(tl)):
+        #     tl[i] = int(tl[i])
+        #self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
+        
         self._info = info
         
         if venue_code in Venue.obj.keys():
@@ -75,13 +78,25 @@ class Event(Gclass):
     def name(self):
         return self._name
     @property
-    def dt(self):
-        return self._dt
-    @dt.setter
-    def dt(self, date, time):
-        dl = date.split('-')
-        tl = time.split(':')
-        self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
+    def date(self):
+        return self._date
+    @property
+    def time(self):
+        return self._time
+    # dt property setter method
+    # @dt.setter
+    # def dt(self, date, time):
+    #     dl = date.split('-')
+    #     tl = time.split(':')
+    #     self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
+    
+    @date.setter
+    def date(self,data):
+        self._date = data
+    @time.setter
+    def time(self,hora):
+        self._time = hora
+    # info property getter method
     @property
     def info(self):
         return self._info
