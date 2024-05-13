@@ -38,7 +38,6 @@ app.config['UPLOAD'] = upload_folder
 import subs_login as lsub
 import subs_gform as gfsub
 import subs_gformT as gfTsub
-import subs_hform as gfhsub
 import subs_subform as gfsubsub
 import subs_productFoto as productFotosub
 
@@ -79,8 +78,6 @@ def gformT(cname=''):
 def hform(cname=''):
     submenu = request.args.get("subm")
     return gfhsub.hform(cname,submenu)
-
-
         
 @app.route("/subform/<cname>", methods=["post","get"])
 def subform(cname=""):
