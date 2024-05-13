@@ -78,8 +78,6 @@ def gformT(cname=''):
 def hform(cname=''):
     submenu = request.args.get("subm")
     return gfhsub.hform(cname,submenu)
-
-
         
 @app.route("/subform/<cname>", methods=["post","get"])
 def subform(cname=""):
