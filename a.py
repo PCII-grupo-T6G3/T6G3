@@ -8,7 +8,7 @@ Created on Tue Apr  2 10:46:13 2024
 from classes.Event import Event
 from classes.Venue import Venue
 from classes.Type import Type
-from classes.gclass import Gclass
+from classes.Gclass import Gclass
 
 Event.reset()
 Type.reset()
