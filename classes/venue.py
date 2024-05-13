@@ -57,4 +57,4 @@ class Venue(Gclass):
         return self._capacity
     @capacity.setter
     def capacity(self, capacity):
-        self._capacity = capacity
+        self._capacity = int(capacity)
