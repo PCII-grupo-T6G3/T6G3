@@ -7,7 +7,7 @@ Created on Mon May 13 17:13:27 2024
 
 from datafile import filename
 
-from classes.Venue import Venue
+from classes.venue import Venue
 
 Venue.read(filename + 'project.db')
 

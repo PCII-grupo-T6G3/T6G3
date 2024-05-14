@@ -6,11 +6,11 @@
 
 """""
 from flask import Flask, render_template, request, session
-from classes.participant import Participant
 from classes.event import Event
-from classes.venue import Venue
-from classes.type import Type
+from classes.participant import Participant
 from classes.registration import Registration
+from classes.type import Type
+from classes.venue import Venue
 from classes.feedback import Feedback
 from classes.userlogin import Userlogin
 

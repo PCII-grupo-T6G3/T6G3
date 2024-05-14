@@ -14,15 +14,15 @@ class Participant(Gclass):
     # Class header title
     header = 'Participants'
     # field description for use in, for example, in input form
-    des = ['UP','Name','Phone']
+    des = ['UP Number','Name','Year','Phone Number']
     # Constructor: Called when an object is instantiated
-    def __init__(self,code,name,phone):
+    def __init__(self,code,name,year,phone):
         super().__init__()
         # Object attributes
         self._code = str(code)
         self._name = name
-        self._year = 2024 - int(str(code)[0:4])  # cálculo mega rafado
-        self._phone = phone
+        self._year = int(year)
+        self._phone = str(phone)
         # Add the new object to the Participant list
         Participant.obj[code] = self
         Participant.lst.append(code)
@@ -55,4 +55,4 @@ class Participant(Gclass):
     # phone property setter method
     @phone.setter
     def phone(self, phone):
-        self._phone = phone
+        self._phone = str(phone)

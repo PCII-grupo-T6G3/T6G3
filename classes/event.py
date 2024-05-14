@@ -13,13 +13,13 @@ class Event(Gclass):
     auto_number = 1 # = 1 in case of auto number on
     nkey = 1
     # class attributes, identifier attribute must be the first one on the list
-    att = ['_code','_name','_date', '_time','_info','_slots','_venue_code','_type_code']
+    att = ['_code','_name','_date','_time','_info','_slots','_venue_code','_type_code']
     att2 = ['_code','_name','_date','_time','_info','_slots','_venue_name','_type_name']
     # Class header title
     header = 'Events'
     # field description for use in, for example, in input form
     des = ['Code','Name','Date', 'Time','Description','Available Slots',\
-           'Venue','Type']
+           'Venue Code','Type Code']
     # Constructor: Called when an object is instantiated
     def __init__(self, code, name, date, time, info, slots, venue_code, type_code):
         super().__init__()
@@ -41,22 +41,22 @@ class Event(Gclass):
         # tl = time.split(':')
         # for i in range(len(tl)):
         #     tl[i] = int(tl[i])
-        #self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
+        # self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
         
         self._info = info
         
-        if venue_code in Venue.obj.keys():
-            self._venue = Venue.obj[str(venue_code)]
-            self._venue_code = venue_code
-            self._venue_name = self._venue.name
-        else:
-            print('Venue not found!')
-        if type_code in Type.obj.keys():
-            self._type = Type.obj[str(type_code)]
-            self._type_code = type_code
-            self._type_name = self._type.name
-        else:
-            print('Type not found!')
+        # if venue_code in Venue.obj.keys():
+        #     self._venue = Venue.obj[str(venue_code)]
+        #     self._venue_code = venue_code
+        #     self._venue_name = self._venue.name
+        # else:
+        #     print('Venue not found!')
+        # if type_code in Type.obj.keys():
+        #     self._type = Type.obj[str(type_code)]
+        #     self._type_code = type_code
+        #     self._type_name = self._type.name
+        # else:
+        #     print('Type not found!')
             
         if int(slots) <= self._venue.capacity:
             self._slots = int(slots)

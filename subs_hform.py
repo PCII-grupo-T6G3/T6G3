@@ -14,7 +14,6 @@ from classes.type import Type
 from classes.registration import Registration
 from classes.feedback import Feedback
 from classes.userlogin import Userlogin
-from classes.order2Form import Order2Form
 
 from datetime import timedelta
 from datetime import datetime
