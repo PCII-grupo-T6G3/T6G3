@@ -1,7 +1,7 @@
 #Class Venue
 #import the generic class
 
-from classes.Gclass import Gclass
+from classes.gclass import Gclass
 
 class Venue(Gclass):
     
