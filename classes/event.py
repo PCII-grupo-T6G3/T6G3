@@ -45,29 +45,29 @@ class Event(Gclass):
         
         self._info = info
         
-        self._venue = Venue.obj[str(venue_code)]
-        self._type = Type.obj[str(type_code)]
-        self._slots = int(slots)
+        # self._venue = Venue.obj[str(venue_code)]
+        # self._type = Type.obj[str(type_code)]
+        # self._slots = int(slots)
         
-        # if venue_code in Venue.obj.keys():
-        #     self._venue = Venue.obj[str(venue_code)]
-        #     self._venue_code = venue_code
-        #     self._venue_name = self._venue.name
-        # else:
-        #     print('Venue not found!')
-        # if type_code in Type.obj.keys():
-        #     self._type = Type.obj[str(type_code)]
-        #     self._type_code = type_code
-        #     self._type_name = self._type.name
-        # else:
-        #     print('Type not found!')
+        if venue_code in Venue.obj.keys():
+            self._venue = Venue.obj[str(venue_code)]
+            self._venue_code = venue_code
+            self._venue_name = self._venue.name
+        else:
+            print('Venue not found!')
+        if type_code in Type.obj.keys():
+            self._type = Type.obj[str(type_code)]
+            self._type_code = type_code
+            self._type_name = self._type.name
+        else:
+            print('Type not found!')
             
-        # if int(slots) <= self._venue.capacity:
-        #     self._slots = int(slots)
-        # else:
-        #     while int(slots) > self._venue.capacity:
-        #         slots = input('Venue not big enough for event slots! Try again: ')
-        #     self._slots = int(slots)
+        if int(slots) <= self._venue.capacity:
+            self._slots = int(slots)
+        else:
+            while int(slots) > self._venue.capacity:
+                slots = input('Venue not big enough for event slots! Try again: ')
+            self._slots = int(slots)
                       
         self._used_slots = 0
 
