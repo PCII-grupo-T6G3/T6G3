@@ -54,20 +54,19 @@ class Event(Gclass):
             self._venue_code = venue_code
             self._venue_name = self._venue.name
         else:
-            print('Venue not found!')
+            raise Exception('Venue not found!')
         if type_code in Type.obj.keys():
             self._type = Type.obj[str(type_code)]
             self._type_code = type_code
             self._type_name = self._type.name
         else:
-            print('Type not found!')
+            raise Exception('Type not found!')
             
         if int(slots) <= self._venue.capacity:
             self._slots = int(slots)
         else:
-            while int(slots) > self._venue.capacity:
-                slots = input('Venue not big enough for event slots! Try again: ')
-            self._slots = int(slots)
+            raise Exception('Venue not big enough for event slots! Try again.')
+
                       
         self._used_slots = 0
 
@@ -112,9 +111,8 @@ class Event(Gclass):
         if int(slots) <= self._venue.capacity:
             self._slots = int(slots)
         else:
-            while int(slots) > self._venue.capacity:
-                slots = input('Venue not big enough for event slots! Try again: ')
-            self._slots = int(slots)
+            raise Exception('Venue not big enough for event slots! Try again.')
+            
     @property
     def venue_code(self):
         return self._venue_code
@@ -123,7 +121,7 @@ class Event(Gclass):
         if venue_code in Venue.obj.keys():
             self._venue = Venue.obj[str(venue_code)]
         else:
-            print('Venue not found!')
+            raise Exception('Venue not found!')
     @property
     def event_type(self):
         return self._event_type
@@ -132,7 +130,7 @@ class Event(Gclass):
         if type_code in Type.obj.keys():
             self._event_type = Type.obj[str(type_code)]
         else:
-            print('Type not found!')
+            raise Exception('Type not found!')
     
     # Overload do método str da Gclass para escrever
     # o nome do venue e do type em vez do código

@@ -36,11 +36,11 @@ class Registration(Gclass):
                     Registration.obj[self._ticket] = self
                     Registration.lst.append(self._ticket)
                 elif participant_code not in Participant.lst and event_code in Event.lst:
-                    print('Participant ', participant_code, ' not found!')
+                    raise Exception('Participant ', participant_code, ' not found!')
             else:
-                print('Event is full!')
+                raise Exception('Event is full!')
         else:
-            print('Event ', event_code, ' not found!')
+            raise Exception('Event ', event_code, ' not found!')
 
     @property
     def event_code(self):
