@@ -7,10 +7,12 @@
 """""
 from flask import Flask, render_template, request, session
 
-from classes.customer import Customer
-from classes.product import Product
-from classes.customerorder import CustomerOrder
-from classes.orderproduct import OrderProduct
+from classes.participant import Participant
+from classes.event import Event
+from classes.venue import Venue
+from classes.type import Type
+from classes.registration import Registration
+from classes.feedback import Feedback
 from classes.userlogin import Userlogin
 from classes.order2Form import Order2Form
 

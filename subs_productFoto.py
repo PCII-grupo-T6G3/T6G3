@@ -9,7 +9,13 @@ from flask import Flask, render_template, request, session
 from werkzeug.utils import secure_filename
 import os
 
-from classes.product import Product
+from classes.participant import Participant
+from classes.event import Event
+from classes.venue import Venue
+from classes.type import Type
+from classes.registration import Registration
+from classes.feedback import Feedback
+from classes.userlogin import Userlogin
 
 prev_option = ""
 img = ""
