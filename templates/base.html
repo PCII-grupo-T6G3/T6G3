@@ -14,24 +14,22 @@
                     <li><a class="button" href="/login">Login</a></li>
                 {% else %}
                     <li><a class="button" href="/logoff">Logoff</a></li>
-                    <li><a class="button" href="/gform/Customer">Customer</a></li>
                     
-                    <li><a class="button" href="/submenu?subm=event">Event</a></li>
-                    <li><a class="button" href="/submenu?subm=participant">Participant</a></li>
-                    <li><a class="button" href="/submenu?subm=type">Type</a></li>
+                    <li><a class="button" href="/gform/Participant">Participants</a></li>
+                           
+                    <li><a class="button" href="/submenu?subm=event">Events</a></li>
                     <li><a class="button" href="/submenu?subm=registration">Registration</a></li>
-                    <li><a class="button" href="/submenu?subm=venue">Venue</a></li>
-                    <li><a class="button" href="/submenu?subm=feedback">Feedback</a></li>
                     
                     <li><a class="button" style="color:lightblue">User: {{ulogin}}</a></li>
                     
                     <br><br>
-                    {% if submenu == "order" %}
-                        <li><a class="button" href="/subform/CustomerOrder_OrderProduct?option=''&subm=order">Order lines</a></li>
-                        <li><a class="button" href="/order/mapa?option=''">Mapa encomendas</a></li>
+                    {% if submenu == "event" %}
+                        <li><a class="button" href="/gform/Event?subm=event">Events</a></li>
+                        <li><a class="button" href="/gform/Venue?subm=event">Venues</a></li>
+                        <li><a class="button" href="/gform/Type?subm=event">Types</a></li>
                     {% endif %} 
                     
-                    {% if submenu == "product" %}
+                    {% if submenu == "registration" %}
                         <li><a class="button" href="/gform/Product?subm=product">Product</a></li>
                         <li><a class="button" href="/productform?subm=product">Product(foto)</a></li>
                     {% endif %} 
