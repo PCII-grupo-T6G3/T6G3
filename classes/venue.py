@@ -1,7 +1,7 @@
 #Class Venue
 #import the generic class
 
-from classes.Gclass import Gclass
+from classes.gclass import Gclass
 
 class Venue(Gclass):
     
@@ -57,4 +57,4 @@ class Venue(Gclass):
         return self._capacity
     @capacity.setter
     def capacity(self, capacity):
-        self._capacity = capacity
+        self._capacity = int(capacity)

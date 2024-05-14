@@ -1,6 +1,6 @@
 # Class Participant
 # Import the generic class
-from classes.Gclass import Gclass
+from classes.gclass import Gclass
 
 class Participant(Gclass):
     obj = dict()

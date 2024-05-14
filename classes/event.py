@@ -1,9 +1,9 @@
 # Class Event
 # Import the generic class
-from classes.Gclass import Gclass
+from classes.gclass import Gclass
 import datetime
-from classes.Venue import Venue
-from classes.Type import Type
+from classes.venue import Venue
+from classes.type import Type
 
 class Event(Gclass):
     obj = dict()
