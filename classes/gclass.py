@@ -203,3 +203,4 @@ class Gclass:
         except sqlite3.Error as er:
             print(f'sqlite error: {er}')
         return resul
+#.
