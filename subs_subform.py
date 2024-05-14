@@ -6,12 +6,10 @@
 
 """""
 from flask import Flask, render_template, request, session
-from classes.event import Event
-from classes.participant import Participant
-from classes.registration import Registration
-from classes.type import Type
-from classes.venue import Venue
-from classes.feedback import Feedback
+from classes.customer import Customer
+from classes.product import Product
+from classes.customerorder import CustomerOrder
+from classes.orderproduct import OrderProduct
 from classes.userlogin import Userlogin
 
 prev_option = ""
