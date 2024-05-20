@@ -27,7 +27,7 @@ class Registration(Gclass):
             self._event_code = event_code
             self._event = Event.obj[event_code]
             # verifica se evento está cheio
-            if self._event._used_slots < self._event.slots:
+            if self._event._used_slots < self._event.slots: #Isto nao devia ser Event.used_slots? self._event._used_slots
                 self._event._used_slots += 1
                 # verifica se participante existe
                 if participant_code in Participant.lst:
