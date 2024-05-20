@@ -49,24 +49,34 @@ class Event(Gclass):
         # self._type = Type.obj[str(type_code)]
         # self._slots = int(slots)
         
-        if venue_code in Venue.obj.keys():
-            self._venue = Venue.obj[str(venue_code)]
-            self._venue_code = venue_code
-            self._venue_name = self._venue.name
-        else:
-            raise Exception('Venue not found!')
-        if type_code in Type.obj.keys():
-            self._type = Type.obj[str(type_code)]
-            self._type_code = type_code
-            self._type_name = self._type.name
-        else:
-            raise Exception('Type not found!')
-            
-        if int(slots) <= self._venue.capacity:
-            self._slots = int(slots)
-        else:
-            raise Exception('Venue not big enough for event slots! Try again.')
+        
+        try:
+            # Validate and set venue
+            if venue_code in Venue.obj.keys():
+                self._venue = Venue.obj[str(venue_code)]
+                self._venue_code = venue_code
+                self._venue_name = self._venue.name
+            else:
+                raise ValueError('Venue not found!')
 
+            # Validate and set type
+            if type_code in Type.obj.keys():
+                self._type = Type.obj[str(type_code)]
+                self._type_code = type_code
+                self._type_name = self._type.name
+            else:
+                raise ValueError('Type not found!')
+
+            # Validate and set slots
+            if int(slots) <= self._venue.capacity:
+                self._slots = int(slots)
+            else:
+                raise ValueError('Venue not big enough for event slots!')
+
+        except ValueError as e:
+            print(e)
+            # Optionally, re-raise the exception or handle it appropriately here
+            raise
                       
         self._used_slots = 0
 
@@ -140,11 +150,3 @@ class Event(Gclass):
             strprint += '{self.' + att2 + '};'
         strprint = strprint[:-1] + "'"
         return eval(strprint)
-    
-# v1 = Venue('None', 'Pavilhão da Areosa', 'Areosa', '100')
-# print(v1)
-# t1 = Type('01','Desporto')
-# print(t1)
-# e1 = Event('None','TAS','27-3-2024','11:00','Torneio de Futsal','8',\
-# '1','01')
-# print(e1)
