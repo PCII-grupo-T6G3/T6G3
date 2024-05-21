@@ -32,8 +32,21 @@ def gform(cname='',submenu=""):
             for i in range(1,len(cl.att)):
                 strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
-            cl.insert(getattr(obj, cl.att[0]))
-            cl.last()
+            
+            # tentar correr o chkevent antes de inserir na base de dados
+            approval = obj.chkevent()
+            if approval == 'Approved!':
+                cl.insert(getattr(obj, cl.att[0]))
+                cl.last()
+                return render_template("gform.html", butshow=butshow, butedit=butedit,
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),auto_number=cl.auto_number,
+                                submenu=submenu, resul=approval)
+            else:
+                return render_template("gform.html", butshow=butshow, butedit=butedit,
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),auto_number=cl.auto_number,
+                                submenu=submenu, resul=approval)
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
@@ -67,7 +80,7 @@ def gform(cname='',submenu=""):
                 return render_template("index.html", ulogin=session.get("user"))
         prev_option = option
         obj = cl.current()
-        if option == 'insert' or len(cl.lst) == 0:
+        if option == 'insert' or len(cl.lst) == 0: # deixar escrever quando se clica em insert
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
