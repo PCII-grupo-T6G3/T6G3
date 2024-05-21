@@ -48,4 +48,8 @@ class Type(Gclass):
     @name.setter
     def name(self, tipo):
         self._type_name = tipo
+        
+    def chk_validity(self):
+        message = 'Approved!'
+        return message
     

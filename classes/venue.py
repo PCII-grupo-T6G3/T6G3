@@ -54,3 +54,7 @@ class Venue(Gclass):
     @capacity.setter
     def capacity(self, capacity):
         self._capacity = int(capacity)
+        
+    def chk_validity(self):
+        message = 'Approved!'
+        return message
