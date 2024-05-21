@@ -56,22 +56,31 @@ class Event(Gclass):
                 self._venue = Venue.obj[str(venue_code)]
                 self._venue_code = venue_code
                 self._venue_name = self._venue.name
+                message = "Valid"
+                return message
             else:
-                raise ValueError('Venue not found!')
+                message = "Venue not found"
+                return message
 
             # Validate and set type
             if type_code in Type.obj.keys():
                 self._type = Type.obj[str(type_code)]
                 self._type_code = type_code
                 self._type_name = self._type.name
+                message = "Valid"
+                return message
             else:
-                raise ValueError('Type not found!')
+                message = "Type not found"
+                return message
 
             # Validate and set slots
             if int(slots) <= self._venue.capacity:
                 self._slots = int(slots)
+                message = "Valid"
+                return message
             else:
-                raise ValueError('Venue not big enough for event slots!')
+                message = "Venue not big enough for event slots!"
+                return message
 
         except ValueError as e:
             print(e)
@@ -120,8 +129,12 @@ class Event(Gclass):
     def slots(self, slots):
         if int(slots) <= self._venue.capacity:
             self._slots = int(slots)
+            message = 'Valid.'
+            return message
         else:
-            raise Exception('Venue not big enough for event slots! Try again.')
+            message = 'Venue not big enough for event slots! Try again.'
+            return message
+         
             
     @property
     def venue_code(self):
@@ -130,8 +143,11 @@ class Event(Gclass):
     def venue_code(self, venue_code):
         if venue_code in Venue.obj.keys():
             self._venue = Venue.obj[str(venue_code)]
+            message = 'Valid.'
+            return message
         else:
-            raise Exception('Venue not found!')
+            message = 'Venue not found!'
+            return message
     @property
     def event_type(self):
         return self._event_type
@@ -140,7 +156,8 @@ class Event(Gclass):
         if type_code in Type.obj.keys():
             self._event_type = Type.obj[str(type_code)]
         else:
-            raise Exception('Type not found!')
+            message = 'Type not found!'
+            return message
     
     # Overload do método str da Gclass para escrever
     # o nome do venue e do type em vez do código
