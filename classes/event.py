@@ -91,12 +91,7 @@ class Event(Gclass):
         return self._slots
     @slots.setter
     def slots(self, slots):
-        if int(slots) <= self._venue.capacity:
-            self._slots = int(slots)
-        else:
-            while int(slots) > self._venue.capacity:
-                slots = input('Venue not big enough for event slots! Try again: ')
-            self._slots = int(slots)
+        self._slots = int(slots)
     @property
     def venue_code(self):
         return self._venue_code
@@ -109,15 +104,6 @@ class Event(Gclass):
     @type_code.setter
     def type_code(self, type_code):
         self._type_code = type_code
-    @property
-    def event_type(self):
-        return self._event_type
-    @event_type.setter
-    def event_type(self, type_code):
-        if type_code in Type.obj.keys():
-            self._event_type = Type.obj[str(type_code)]
-        else:
-            print('Type not found!')
     
     # Overload do método str da Gclass para escrever
     # o nome do venue e do type em vez do código
@@ -128,7 +114,7 @@ class Event(Gclass):
         strprint = strprint[:-1] + "'"
         return eval(strprint)
     
-    def chkevent(self):
+    def chk_validity(self):
         message = 'Approved!'
         # Verifica o espaço do evento
         if self._venue_code in Venue.obj.keys():

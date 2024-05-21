@@ -13,6 +13,7 @@ from classes.type import Type
 from classes.venue import Venue
 from classes.feedback import Feedback
 from classes.userlogin import Userlogin
+from datafile import filename
 
 prev_option = ""
 
@@ -33,8 +34,16 @@ def gform(cname='',submenu=""):
                 strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
             
-            # tentar correr o chkevent antes de inserir na base de dados
-            approval = obj.chkevent()
+            # if cname == 'event':
+            #     approval = obj.chkevent()
+            # elif cname == 'participant':
+            #     approval = obj.chkparticipant()
+            # elif cname == 'registration':
+            #     approval = obj.chkregistration()
+            # elif cname == 'feedback':
+            #     approval = obj.chkfeedback()
+            
+            approval = obj.chk_validity()
             if approval == 'Approved!':
                 cl.insert(getattr(obj, cl.att[0]))
                 cl.last()
@@ -43,7 +52,16 @@ def gform(cname='',submenu=""):
                                 ulogin=session.get("user"),auto_number=cl.auto_number,
                                 submenu=submenu, resul=approval)
             else:
-                return render_template("gform.html", butshow=butshow, butedit=butedit,
+                cod = getattr(obj, cl.att[0])
+                del cl.obj[cod]
+                cl.read(filename + 'project.db')
+                """
+                return render_template("gform.html", butshow=butshow, butedit='enabled',
+                                cname=cname, obj=cl.obj[str(int(cod)-1)],att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),auto_number=cl.auto_number,
+                                submenu=submenu, resul=approval)
+                """
+                return render_template("gform.html", butshow='disabled', butedit='enabled',
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                                 ulogin=session.get("user"),auto_number=cl.auto_number,
                                 submenu=submenu, resul=approval)

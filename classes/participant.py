@@ -56,3 +56,10 @@ class Participant(Gclass):
     @phone.setter
     def phone(self, phone):
         self._phone = str(phone)
+        
+    def chk_validity(self):
+        message = 'Approved!'
+        # Verifica se o UP tem 9 digitos
+        if len(self._code) != 9:
+            message = 'UP must have 9 digits!'
+        return message
