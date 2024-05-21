@@ -48,7 +48,7 @@ class Event(Gclass):
         self._venue = ''
         self._type_code = type_code
         self._type = ''
-        self._slots = slots
+        self._slots = int(slots)
         
         self._used_slots = 0
 
@@ -132,7 +132,7 @@ class Event(Gclass):
         if int(self._slots) <= self._venue.capacity:
             self._slots = int(self._slots)
         else:
-            message = 'Event full!'
+            message = "The selected venue isn't big enough!"
             return message
         return message
     

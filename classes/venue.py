@@ -1,10 +1,6 @@
-#Class Venue
-#import the generic class
-
 from classes.gclass import Gclass
 
 class Venue(Gclass):
-    
     obj = dict()
     lst = list()
     pos = 0
