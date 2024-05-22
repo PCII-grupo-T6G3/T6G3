@@ -34,14 +34,12 @@ app.secret_key = 'BAD_SECRET_KEY'
 upload_folder = os.path.join('static', 'ProductFotos')
 app.config['UPLOAD'] = upload_folder
 
-
 import subs_login as lsub
 import subs_gform as gfsub
 import subs_gformT as gfTsub
 import subs_hform as gfhsub
 import subs_subform as gfsubsub
 import subs_productFoto as productFotosub
-
 
 @app.route("/")
 def index():
@@ -58,11 +56,6 @@ def logoff():
 @app.route("/chklogin", methods=["post","get"])
 def chklogin():
     return lsub.chklogin()
-
-# Possível nova página no site q processe o evento
-# @app.route("/chkevent", methods=["post","get"])
-# def chkevent():
-#     return lsub.chkevent()
 
 @app.route("/Userlogin", methods=["post","get"])
 def userlogin():
@@ -161,8 +154,7 @@ def productFoto():
 @app.route("/order/mapa", methods=["post","get"])
 def ordermapa():
     return render_template("uc.html", ulogin=session.get("user"),submenu=submenu)
-
     
 if __name__ == '__main__':
-        #app.run(debug=True)
+        # app.run(debug=True)
         app.run()

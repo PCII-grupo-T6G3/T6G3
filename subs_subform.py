@@ -29,6 +29,8 @@ def subform(cname="",submenu=""):
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
+        if option == None: # pode comprometer futuras ações
+            option = ''
         if prev_option == 'insert' and option == 'save':
             if (cl.auto_number == 1):
                 strobj = "None"
@@ -37,8 +39,26 @@ def subform(cname="",submenu=""):
             for i in range(1,len(cl.att)):
                 strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
-            cl.insert(getattr(obj, cl.att[0]))
-            cl.last()
+            
+            # Criado por nós
+            approval = cl.chk_validity()
+            if approval == 'Approved!':
+                cl.insert(getattr(obj, cl.att[0]))
+                cl.last()
+                return render_template("subform.html", butshow=butshow, butedit=butedit,
+                            cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                            ulogin=session.get("user"),headerl=sbl.header,
+                            desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
+                            submenu=submenu, resul=approval)
+            else:
+                cod = getattr(obj, cl.att[0])
+                del cl.obj[cod]
+                cl.read(filename + 'project.db')
+                return render_template("subform.html", butshow='disabled', butedit='enabled',
+                            cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                            ulogin=session.get("user"),headerl=sbl.header,
+                            desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
+                            submenu=submenu, resul=approval)
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
@@ -85,9 +105,30 @@ def subform(cname="",submenu=""):
                 strobj = getattr(obj, cl.att[0])
                 for i in range(1,len(sbl.att)):
                     strobj += ";" + request.form[sbl.att[i]]
-                objl = sbl.from_string(strobj)
-                code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
-                sbl.insert(code)
+                objl = sbl.from_string(strobj) #problema está no objl, devia ser uma lista
+                
+                # Criado por nós #!!!
+                approval = obj.chk_validity()
+                #x = input(f'{strobj}::')
+                if approval == 'Approved!':
+                    cod = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
+                    sbl.insert(cod)
+                    x = input(f'{cod}::')
+                    return render_template("subform.html", butshow=butshow, butedit=butedit,
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),objl=objl,headerl=sbl.header,
+                                desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
+                                submenu=submenu, resul=approval)
+                else:
+                    cod = getattr(obj, cl.att[0])
+                    del cl.obj[cod]
+                    cl.read(filename + 'project.db')
+                    return render_template("subform.html", butshow='disabled', butedit='enabled',
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),objl=objl,headerl=sbl.header,
+                                desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
+                                submenu=submenu, resul=approval)
+                
             elif option == 'exit':
                 return render_template("index.html", ulogin=session.get("user")) 
         prev_option = option

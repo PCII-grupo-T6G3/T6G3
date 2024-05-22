@@ -21,9 +21,8 @@ class Registration(Gclass):
 
     def __init__(self, participant_code, event_code):
         super().__init__()
-        
-        self._participant_code = participant_code
-        self._event_code = event_code
+        self._participant_code = str(participant_code)
+        self._event_code = str(event_code)
         self._ticket = participant_code + event_code
         
         # Add the new object to the Event list
@@ -41,7 +40,7 @@ class Registration(Gclass):
         return self._ticket
     
     def chk_validity(self):
-        message = f'Registration successful!\nYour ticket number: {self._ticket}'
+        message = 'Approved!'
         # Verifica o evento
         if self._event_code in Event.obj.keys():
             self._event = Event.obj[str(self._event_code)]
