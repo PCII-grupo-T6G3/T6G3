@@ -135,28 +135,3 @@ class Event(Gclass):
             message = "The selected venue isn't big enough!"
             return message
         return message
-    
-    """ !!Chkevent original!!
-    def chkevent():
-        message = 'Approved!'
-        # Verifica o espaço do evento
-        if venue_code in Venue.obj.keys():
-            self._venue = Venue.obj[str(venue_code)]
-            self._venue_code = venue_code
-            self._venue_name = self._venue.name
-        else:
-            message = 'Venue not found!'
-        # Verifica o tipo do evento
-        if type_code in Type.obj.keys():
-            self._type = Type.obj[str(type_code)]
-            self._type_code = type_code
-            self._type_name = self._type.name
-        else:
-            message = 'Type not found!'
-        # Verifica se o número de slots é superior à capacidade do espaço
-        if int(slots) <= self._venue.capacity:
-            self._slots = int(slots)
-        else:
-            message = 'Event full!'
-        return message
-    """
