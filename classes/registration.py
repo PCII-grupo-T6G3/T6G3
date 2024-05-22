@@ -13,22 +13,22 @@ class Registration(Gclass):
     auto_number = 0
     nkey = 2
     # class attributes, identifier attribute must be the first one on the list
-    att = ['_event_code', '_participant_code']
+    att = ['_participant_code', '_event_code']
     # Class header title
     header = 'Registration'
     # field description for use in, for example, in input form
-    des = ['Event code', 'Participant code']
+    des = ['Participant code', 'Event code']
 
-    def __init__(self, event_code, participant_code):
+    def __init__(self, participant_code, event_code):
         super().__init__()
         
-        self._event_code = event_code
         self._participant_code = participant_code
-        self._ticket = event_code + participant_code
+        self._event_code = event_code
+        self._ticket = participant_code + event_code
         
         # Add the new object to the Event list
-        Registration.obj[event_code] = self
-        Registration.lst.append(event_code)
+        Registration.obj[self._ticket] = self
+        Registration.lst.append(self._ticket)
 
     @property
     def event_code(self):
