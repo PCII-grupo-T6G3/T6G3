@@ -53,6 +53,10 @@ class Registration(Gclass):
         else:
             message = 'Participant not found!'
             return message
+        # Verifica se participante já está inscrito
+        if Registration.lst.count(self._ticket) == 2:
+            message = 'Participant already registered in this event!'
+            return message
         # Verifica se ainda há vagas disponíveis
         if self._event._used_slots < self._event._slots:
             self._event._used_slots += 1

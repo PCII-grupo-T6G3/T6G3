@@ -105,29 +105,35 @@ def subform(cname="",submenu=""):
                 strobj = getattr(obj, cl.att[0])
                 for i in range(1,len(sbl.att)):
                     strobj += ";" + request.form[sbl.att[i]]
-                objl = sbl.from_string(strobj) #problema está no objl, devia ser uma lista
+                objl = sbl.from_string(strobj)
+                                
                 
                 # Criado por nós #!!!
-                approval = obj.chk_validity()
-                #x = input(f'{strobj}::')
+                lines = sbl.getlines(getattr(obj, cl.att[0]))
+                objlst = list()
+                for line in lines:
+                    objlst.append(sbl.obj[line])
+                approval = objl.chk_validity()
+                #x = input(f'{objl}::')
                 if approval == 'Approved!':
                     cod = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
                     sbl.insert(cod)
-                    x = input(f'{cod}::')
+                    #x = input(f'{lst_att}::')
                     return render_template("subform.html", butshow=butshow, butedit=butedit,
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                                ulogin=session.get("user"),objl=objl,headerl=sbl.header,
+                                ulogin=session.get("user"),objl=objlst,headerl=sbl.header,
                                 desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                                 submenu=submenu, resul=approval)
                 else:
-                    cod = getattr(obj, cl.att[0])
-                    del cl.obj[cod]
-                    cl.read(filename + 'project.db')
-                    return render_template("subform.html", butshow='disabled', butedit='enabled',
+                    cod = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
+                    del sbl.obj[cod]
+                    sbl.read(filename + 'project.db')
+                    return render_template("subform.html", butshow='disabled', butedit='disabled_esp',
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                                ulogin=session.get("user"),objl=objl,headerl=sbl.header,
+                                ulogin=session.get("user"),objl=objlst,headerl=sbl.header,
                                 desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                                 submenu=submenu, resul=approval)
+                
                 
             elif option == 'exit':
                 return render_template("index.html", ulogin=session.get("user")) 
