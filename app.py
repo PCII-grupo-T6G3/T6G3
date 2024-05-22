@@ -59,6 +59,11 @@ def logoff():
 def chklogin():
     return lsub.chklogin()
 
+# Possível nova página no site q processe o evento
+# @app.route("/chkevent", methods=["post","get"])
+# def chkevent():
+#     return lsub.chkevent()
+
 @app.route("/Userlogin", methods=["post","get"])
 def userlogin():
     global prev_option
@@ -159,5 +164,5 @@ def ordermapa():
 
     
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run()
+        #app.run(debug=True)
+        app.run()

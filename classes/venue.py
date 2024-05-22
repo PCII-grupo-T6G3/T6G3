@@ -1,10 +1,6 @@
-#Class Venue
-#import the generic class
-
 from classes.gclass import Gclass
 
 class Venue(Gclass):
-    
     obj = dict()
     lst = list()
     pos = 0
@@ -58,3 +54,7 @@ class Venue(Gclass):
     @capacity.setter
     def capacity(self, capacity):
         self._capacity = int(capacity)
+        
+    def chk_validity(self):
+        message = 'Approved!'
+        return message

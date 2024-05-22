@@ -33,6 +33,7 @@ class Event(Gclass):
         # Object attributes
         self._code = code
         self._name = name
+        self._info = info
         self._date = date
         self._time = time
         # dl = date.split('-')
@@ -43,46 +44,18 @@ class Event(Gclass):
         #     tl[i] = int(tl[i])
         # self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
         
-        self._info = info
+        self._venue_code = venue_code
+        self._venue = ''
+        self._type_code = type_code
+        self._type = ''
+        self._slots = int(slots)
         
-        # self._venue = Venue.obj[str(venue_code)]
-        # self._type = Type.obj[str(type_code)]
-        # self._slots = int(slots)
-        
-        
-        try:
-            # Validate and set venue
-            if venue_code in Venue.obj.keys():
-                self._venue = Venue.obj[str(venue_code)]
-                self._venue_code = venue_code
-                self._venue_name = self._venue.name
-            else:
-                raise ValueError('Venue not found!')
-
-            # Validate and set type
-            if type_code in Type.obj.keys():
-                self._type = Type.obj[str(type_code)]
-                self._type_code = type_code
-                self._type_name = self._type.name
-            else:
-                raise ValueError('Type not found!')
-
-            # Validate and set slots
-            if int(slots) <= self._venue.capacity:
-                self._slots = int(slots)
-            else:
-                raise ValueError('Venue not big enough for event slots!')
-
-        except ValueError as e:
-            print(e)
-            # Optionally, re-raise the exception or handle it appropriately here
-            raise
-                      
         self._used_slots = 0
 
         # Add the new object to the Event list
         Event.obj[code] = self
         Event.lst.append(code)
+        
     # Object properties
     @property
     def code(self):
@@ -118,30 +91,19 @@ class Event(Gclass):
         return self._slots
     @slots.setter
     def slots(self, slots):
-        if int(slots) <= self._venue.capacity:
-            self._slots = int(slots)
-        else:
-            while int(slots) > self._venue.capacity:
-                slots = input('Venue not big enough for event slots! Try again: ')
-            self._slots = int(slots)
+        self._slots = int(slots)
     @property
     def venue_code(self):
         return self._venue_code
     @venue_code.setter
     def venue_code(self, venue_code):
-        if venue_code in Venue.obj.keys():
-            self._venue = Venue.obj[str(venue_code)]
-        else:
-            print('Venue not found!')
+        self._venue_code = venue_code
     @property
-    def event_type(self):
-        return self._event_type
-    @event_type.setter
-    def event_type(self, type_code):
-        if type_code in Type.obj.keys():
-            self._event_type = Type.obj[str(type_code)]
-        else:
-            print('Type not found!')
+    def type_code(self):
+        return self._type_code
+    @type_code.setter
+    def type_code(self, type_code):
+        self._type_code = type_code
     
     # Overload do método str da Gclass para escrever
     # o nome do venue e do type em vez do código
@@ -151,3 +113,50 @@ class Event(Gclass):
             strprint += '{self.' + att2 + '};'
         strprint = strprint[:-1] + "'"
         return eval(strprint)
+    
+    def chk_validity(self):
+        message = 'Approved!'
+        # Verifica o espaço do evento
+        if self._venue_code in Venue.obj.keys():
+            self._venue = Venue.obj[str(self._venue_code)]
+        else:
+            message = 'Venue not found!'
+            return message
+        # Verifica o tipo do evento
+        if self._type_code in Type.obj.keys():
+            self._type = Type.obj[str(self._type_code)]
+        else:
+            message = 'Type not found!'
+            return message
+        # Verifica se o número de slots é superior à capacidade do espaço
+        if int(self._slots) <= self._venue.capacity:
+            self._slots = int(self._slots)
+        else:
+            message = "The selected venue isn't big enough!"
+            return message
+        return message
+    
+    """ !!Chkevent original!!
+    def chkevent():
+        message = 'Approved!'
+        # Verifica o espaço do evento
+        if venue_code in Venue.obj.keys():
+            self._venue = Venue.obj[str(venue_code)]
+            self._venue_code = venue_code
+            self._venue_name = self._venue.name
+        else:
+            message = 'Venue not found!'
+        # Verifica o tipo do evento
+        if type_code in Type.obj.keys():
+            self._type = Type.obj[str(type_code)]
+            self._type_code = type_code
+            self._type_name = self._type.name
+        else:
+            message = 'Type not found!'
+        # Verifica se o número de slots é superior à capacidade do espaço
+        if int(slots) <= self._venue.capacity:
+            self._slots = int(slots)
+        else:
+            message = 'Event full!'
+        return message
+    """
