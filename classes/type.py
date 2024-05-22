@@ -7,7 +7,7 @@ class Type(Gclass):
     lst = list()
     pos = 0
     sortkey = ''
-    auto_number = 0
+    auto_number = 1
     nkey = 1
     # class attributes, identifier attribute must be the first one on the list
     att = ['_code','_type_name'] # cada tipo de evento tem um codigo predefinido
@@ -19,18 +19,14 @@ class Type(Gclass):
     def __init__(self, code, type_name):
         super().__init__()
         # Object attributes
-        flag = False
-        while not flag:
-            if code not in Type.lst:
-                self._code = str(code)
-                self._type_name = type_name
-                # Add the new object to the Participant list
-                Type.obj[code] = self
-                Type.lst.append(code)
-                flag = True
+        if code == 'None':
+            codes = Type.getatlist('_code')
+            if codes == []:
+                code = str(1)
             else:
-                print('Code already used!')
-                code = input('New code: ')
+                code = str(max(map(int,Type.getatlist('_code'))) + 1)
+        self._code = code
+        self._type_name = type_name
     # Object properties
     @property
     def code(self):
