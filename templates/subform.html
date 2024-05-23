@@ -46,6 +46,7 @@
                       <th>{{header}}</th>
                   {% endif %}
               {% endfor %}
+              <th>Event Name</th>
               <td><button id="addrow" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=addrow'" class="button1">+</button></td>
             </tr>
               {% if butshow == 'disabled' and butedit == 'disabled_esp' %}
@@ -58,6 +59,7 @@
                           <td>{{ ob[key] }}</td>
                          {% endif %}
                   {% endfor %}
+                  <td>{{ob._event.name}}</td>
                   <td><button id="delrow" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=delrow_{{loop.index-1}}'" class="button1">-</button></td>
                 </tr>
               {% endfor %}                
