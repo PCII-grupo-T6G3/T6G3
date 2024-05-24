@@ -17,7 +17,6 @@
         <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/subform/{{cname}}?option=cancel'" class="button1">Cancel</button>
         <button id="exit" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=exit'" class="button1">Exit</button>
         -->
-        <br><br>
             <form id="form" action="/subform/{{cname}}?option=save" method="post">
                 {% for key in att %}
                   <label for="{{key}}">{{des[loop.index-1]}}:</label>

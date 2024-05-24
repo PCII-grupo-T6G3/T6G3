@@ -129,6 +129,13 @@ def gform(cname=''):
     submenu = request.args.get("subm")
     return gfsub.gform(cname,submenu)
 
+@app.route("/eventsT", methods=["post","get"])
+def eventsT():
+    submenu = request.args.get("subm")
+    Event.read(filename + 'project.db')
+    return render_template("eventsT.html",objlst=Event.obj,
+                           ulogin=session.get("user"),submenu=submenu)
+
 @app.route("/gformT/<cname>", methods=["post","get"])
 def gformT(cname=''):
     submenu = request.args.get("subm")

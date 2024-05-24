@@ -61,6 +61,7 @@ class Registration(Gclass):
         # Verifica se ainda há vagas disponíveis
         if self._event._used_slots < self._event._slots:
             self._event._used_slots += 1
+            Event.update(self._event_code)
         else:
             message = 'The event is full!'
             return message

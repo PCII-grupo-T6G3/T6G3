@@ -40,7 +40,7 @@ def subform(cname="",submenu=""):
                 strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
             
-            # Criado por nós
+            # Criado por nós - classe Participant
             approval = cl.chk_validity()
             if approval == 'Approved!':
                 cl.insert(getattr(obj, cl.att[0]))
@@ -95,6 +95,9 @@ def subform(cname="",submenu=""):
                 row = int(option.split("_")[1])
                 obj = cl.current()
                 lines = sbl.getlines(getattr(obj, cl.att[0]))
+                obj_r = sbl.current()
+                obj_r._event._used_slots -= 1
+                #!!!Event.update(obj_r._event_code)
                 print(row,lines[row])
                 sbl.remove(lines[row])
             elif option == "addrow":
@@ -108,7 +111,7 @@ def subform(cname="",submenu=""):
                 objl = sbl.from_string(strobj)
                                 
                 
-                # Criado por nós #!!!
+                # Criado por nós - classe Registration
                 lines = sbl.getlines(getattr(obj, cl.att[0]))
                 objlst = list()
                 for line in lines:

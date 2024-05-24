@@ -30,6 +30,11 @@ def gform(cname='',submenu=""):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
+            # if cl == Event:
+            #     for i in range(1,len(cl.att2)):
+            #         strobj += ";" + request.form[cl.att[i]]
+            #     obj = cl.from_string(strobj)
+            # else:
             for i in range(1,len(cl.att)):
                 strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
