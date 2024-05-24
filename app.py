@@ -43,7 +43,7 @@ import subs_subform as gfsubsub
 
 @app.route("/")
 def index():
-    return render_template("index.html", ulogin=session.get("user"))
+    return render_template("index.html", ulogin=session.get("user"),usergroup=session.get('usergroup'))
     
 @app.route("/login")
 def login():
