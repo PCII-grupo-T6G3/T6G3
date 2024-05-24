@@ -42,7 +42,7 @@ def gform(cname='',submenu=""):
                 return render_template("gform.html", butshow=butshow, butedit=butedit,
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                                 ulogin=session.get("user"),auto_number=cl.auto_number,
-                                submenu=submenu, resul=approval)
+                                submenu=submenu, resul=approval,usergroup=session.get('usergroup'))
             else:
                 cod = getattr(obj, cl.att[0])
                 del cl.obj[cod]
@@ -50,7 +50,7 @@ def gform(cname='',submenu=""):
                 return render_template("gform.html", butshow='disabled', butedit='enabled',
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                                 ulogin=session.get("user"),auto_number=cl.auto_number,
-                                submenu=submenu, resul=approval)
+                                submenu=submenu, resul=approval,usergroup=session.get('usergroup'))
             
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
@@ -82,7 +82,7 @@ def gform(cname='',submenu=""):
             elif option == "last":
                 cl.last()
             elif option == 'exit':
-                return render_template("index.html", ulogin=session.get("user"))
+                return render_template("index.html", ulogin=session.get("user"),usergroup=session.get('usergroup'))
         prev_option = option
         obj = cl.current()
         if option == 'insert' or len(cl.lst) == 0: # deixar escrever quando se clica em insert
@@ -91,7 +91,7 @@ def gform(cname='',submenu=""):
                 obj[att] = ""
         return render_template("gform.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                        ulogin=session.get("user"),auto_number=cl.auto_number,
+                        ulogin=session.get("user"),usergroup=session.get('usergroup'),auto_number=cl.auto_number,
                         submenu=submenu)
     else:
         return render_template("index.html", ulogin=ulogin)
