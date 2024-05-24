@@ -39,7 +39,7 @@ import subs_gform as gfsub
 import subs_gformT as gfTsub
 import subs_hform as gfhsub
 import subs_subform as gfsubsub
-import subs_productFoto as productFotosub
+
 
 @app.route("/")
 def index():
@@ -145,11 +145,7 @@ def subform(cname=""):
     return gfsubsub.subform(cname,submenu)
 
 
-@app.route("/productform", methods=["post","get"])
-def productFoto():
-    submenu = request.args.get("subm")
-    cname = 'Product'
-    return productFotosub.productFoto(app,cname,submenu)
+
 
 @app.route("/order/mapa", methods=["post","get"])
 def ordermapa():
