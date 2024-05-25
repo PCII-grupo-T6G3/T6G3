@@ -136,6 +136,14 @@ def eventsT():
     return render_template("eventsT.html",objlst=Event.obj,
                            ulogin=session.get("user"),submenu=submenu)
 
+@app.route("/feedbackT", methods=["post","get"])
+def feedbackT():
+    submenu = request.args.get("subm")
+    Feedback.read(filename)
+    return render_template("feedbackT.html",objlst=Feedback.obj,
+                           ulogin=session.get("user"),submenu=submenu,
+                           Event=Event,Participant=Participant)
+
 @app.route("/gformT/<cname>", methods=["post","get"])
 def gformT(cname=''):
     submenu = request.args.get("subm")
