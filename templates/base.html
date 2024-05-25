@@ -17,8 +17,7 @@
                         <li><a class="button" href="/logoff">Logoff</a></li>
                         
                         <li><a class="button" href="/gform/Participant">Participants</a></li>
-                        <li><a class="button" href="/gform/Event">Events</a></li>
-                        <li><a class="button" href="/gform/Participant">Participants</a></li>
+                        <li><a class="button" href="/eventsT">Events</a></li>
                         <li><a class="button" href="/submenu?subm=registration">Registration</a></li>
                         
                         <li><a class="button" style="color:lightblue">User: {{ulogin}}</a></li>
@@ -38,13 +37,13 @@
                         <li><a class="button" href="/submenu?subm=event">Events</a></li>
                         <li><a class="button" href="/submenu?subm=registration">Registration</a></li>
                         <li><a class="button" href="/Userlogin">Userlogin</a></li>
-                        
                         <li><a class="button" style="color:lightblue">User: {{ulogin}}</a></li>
                         
                         <br><br>
                         {% if submenu == "event" %}
                             <li><a class="button" href="/gform/Event?subm=event">Events</a></li>
                             <li><a class="button" href="/gform/Venue?subm=event">Venues</a></li>
+                            <li><a class="button" href="/eventsT?subm=event">Events Overview</a></li>
                             <li><a class="button" href="/gform/Type?subm=event">Types</a></li>
                         {% endif %} 
                         
@@ -53,10 +52,7 @@
                             <li><a class="button" href="/gform/Feedback?subm=registration">Feedback</a></li>
             
                         {% endif %}
-                    {% endif %}                   
-                    
-                    
-                    
+                    {% endif %}                    
                 {% endif %}
             </ul>
         </nav>

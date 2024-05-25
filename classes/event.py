@@ -14,14 +14,14 @@ class Event(Gclass):
     nkey = 1
     # class attributes, identifier attribute must be the first one on the list
     att = ['_code','_name','_date','_time','_info','_slots','_venue_code','_type_code']
-    att2 = ['_code','_name','_date','_time','_info','_slots','_venue_name','_type_name']
+    att2 = ['_code','_name','_date','_time','_info','_slots','_venue_code','_type_code','_used_slots']
     # Class header title
     header = 'Events'
     # field description for use in, for example, in input form
     des = ['Code','Name','Date', 'Time','Description','Available Slots',\
            'Venue Code','Type Code']
     # Constructor: Called when an object is instantiated
-    def __init__(self, code, name, date, time, info, slots, venue_code, type_code):
+    def __init__(self, code, name, date, time, info, slots, venue_code, type_code, used_slots=0):
         super().__init__()
         # Uncomment in case of auto number on
         if code == 'None':
@@ -50,7 +50,7 @@ class Event(Gclass):
         self._type = ''
         self._slots = int(slots)
         
-        self._used_slots = 0
+        self._used_slots = int(used_slots)
 
         # Add the new object to the Event list
         Event.obj[code] = self
@@ -77,10 +77,10 @@ class Event(Gclass):
     #     self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
     
     @date.setter
-    def date(self,data):
+    def date(self, data):
         self._date = data
     @time.setter
-    def time(self,hora):
+    def time(self, hora):
         self._time = hora
     # info property getter method
     @property
@@ -99,26 +99,42 @@ class Event(Gclass):
     def venue_code(self, venue_code):
         self._venue_code = venue_code
     @property
+    def venue_name(self):
+        return Venue.obj[self.venue_code].name
+    @property
     def type_code(self):
         return self._type_code
     @type_code.setter
     def type_code(self, type_code):
         self._type_code = type_code
+    @property
+    def type_name(self):
+        return Type.obj[self.type_code].name
+    @property
+    def used_slots(self):
+        return self._used_slots
+    @used_slots.setter
+    def used_slots(self, used_slots):
+        self._used_slots = int(used_slots)
+    @property
+    def remaining_slots(self):
+        return self._slots - self._used_slots
     
     # Overload do método str da Gclass para escrever
     # o nome do venue e do type em vez do código
-    def __str__(self):
-        strprint = "f'"
-        for att2 in type(self).att2:
-            strprint += '{self.' + att2 + '};'
-        strprint = strprint[:-1] + "'"
-        return eval(strprint)
+    # def __str__(self):
+    #     strprint = "f'"
+    #     for att2 in type(self).att2:
+    #         strprint += '{self.' + att2 + '};'
+    #     strprint = strprint[:-1] + "'"
+    #     return eval(strprint)
     
     def chk_validity(self):
         message = 'Approved!'
         # Verifica o espaço do evento
         if self._venue_code in Venue.obj.keys():
             self._venue = Venue.obj[str(self._venue_code)]
+            print(self._venue)
         else:
             message = 'Venue not found!'
             return message

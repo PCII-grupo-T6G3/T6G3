@@ -86,19 +86,30 @@ class Gclass:
     def insert(cls, p):
         obj = cls.obj[p]
         command = f'INSERT INTO {cls.__name__} VALUES('
-        for att in cls.att:
-            value = getattr(obj, att)
-            command += f'{cls.conv(obj, att, value)},'
-        command = command[:-1] + ")"
+        if cls.__name__ == 'Event':
+            for att in cls.att2:
+                value = getattr(obj, att)
+                command += f'{cls.conv(obj, att, value)},'
+            command = command[:-1] + ")"
+        else:
+            for att in cls.att:
+                value = getattr(obj, att)
+                command += f'{cls.conv(obj, att, value)},'
+            command = command[:-1] + ")"
         cls.sqlexe(command)
     # Object update method
     @classmethod
     def update(cls, p):
         obj = cls.obj[p]
         command = f'UPDATE "{cls.__name__}" SET'
-        for att in cls.att:
-            value = getattr(obj, att)
-            command += f' {att[1:]} = {cls.conv(obj, att, value)},'
+        if cls.__name__ == 'Event':
+            for att in cls.att2:
+                value = getattr(obj, att)
+                command += f' {att[1:]} = {cls.conv(obj, att, value)},'
+        else:
+            for att in cls.att:
+                value = getattr(obj, att)
+                command += f' {att[1:]} = {cls.conv(obj, att, value)},'
         if cls.nkey == 1:
             code = cls.att[0][1:]
             command = command[:-1] + f' WHERE {code} = {cls.conv(obj, code, p)}'

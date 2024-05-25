@@ -30,6 +30,11 @@ def gform(cname='',submenu=""):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
+            # if cl == Event:
+            #     for i in range(1,len(cl.att2)):
+            #         strobj += ";" + request.form[cl.att[i]]
+            #     obj = cl.from_string(strobj)
+            # else:
             for i in range(1,len(cl.att)):
                 strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
@@ -46,7 +51,7 @@ def gform(cname='',submenu=""):
             else:
                 cod = getattr(obj, cl.att[0])
                 del cl.obj[cod]
-                cl.read(filename + 'project.db')
+                cl.read(filename)
                 return render_template("gform.html", butshow='disabled', butedit='enabled',
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                                 ulogin=session.get("user"),auto_number=cl.auto_number,

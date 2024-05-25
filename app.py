@@ -20,13 +20,13 @@ from classes.userlogin import Userlogin
 
 app = Flask(__name__)
 
-Event.read(filename + 'project.db')
-Participant.read(filename + 'project.db')
-Registration.read(filename + 'project.db')
-Type.read(filename + 'project.db')
-Venue.read(filename + 'project.db')
-Feedback.read(filename + 'project.db')
-Userlogin.read(filename + 'project.db')
+Event.read(filename)
+Participant.read(filename)
+Registration.read(filename)
+Type.read(filename)
+Venue.read(filename)
+Feedback.read(filename)
+Userlogin.read(filename)
 prev_option = ""
 submenu = ""
 app.secret_key = 'BAD_SECRET_KEY'
@@ -128,6 +128,13 @@ def getsubm():
 def gform(cname=''):
     submenu = request.args.get("subm")
     return gfsub.gform(cname,submenu)
+
+@app.route("/eventsT", methods=["post","get"])
+def eventsT():
+    submenu = request.args.get("subm")
+    Event.read(filename)
+    return render_template("eventsT.html",objlst=Event.obj,
+                           ulogin=session.get("user"),submenu=submenu)
 
 @app.route("/gformT/<cname>", methods=["post","get"])
 def gformT(cname=''):

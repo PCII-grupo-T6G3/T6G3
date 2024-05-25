@@ -40,7 +40,7 @@ def subform(cname="",submenu=""):
                 strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
             
-            # Criado por nós
+            # Criado por nós - classe Participant
             approval = cl.chk_validity()
             if approval == 'Approved!':
                 cl.insert(getattr(obj, cl.att[0]))
@@ -53,7 +53,7 @@ def subform(cname="",submenu=""):
             else:
                 cod = getattr(obj, cl.att[0])
                 del cl.obj[cod]
-                cl.read(filename + 'project.db')
+                cl.read(filename)
                 return render_template("subform.html", butshow='disabled', butedit='enabled',
                             cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                             ulogin=session.get("user"),headerl=sbl.header,
@@ -95,7 +95,13 @@ def subform(cname="",submenu=""):
                 row = int(option.split("_")[1])
                 obj = cl.current()
                 lines = sbl.getlines(getattr(obj, cl.att[0]))
-                print(row,lines[row])
+                obj_r = Registration.obj[lines[row]]
+                print(obj_r._event._used_slots)
+                obj_r._event._used_slots -= 1
+                print(obj_r._event._used_slots)
+                Event.update(obj_r._event_code)
+                # Event.read(filename)
+                # print(row,lines[row])
                 sbl.remove(lines[row])
             elif option == "addrow":
                 butshow = "disabled"
@@ -108,7 +114,7 @@ def subform(cname="",submenu=""):
                 objl = sbl.from_string(strobj)
                                 
                 
-                # Criado por nós #!!!
+                # Criado por nós - classe Registration
                 lines = sbl.getlines(getattr(obj, cl.att[0]))
                 objlst = list()
                 for line in lines:
@@ -127,7 +133,7 @@ def subform(cname="",submenu=""):
                 else:
                     cod = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
                     del sbl.obj[cod]
-                    sbl.read(filename + 'project.db')
+                    sbl.read(filename)
                     return render_template("subform.html", butshow='disabled', butedit='disabled_esp',
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                                 ulogin=session.get("user"),objl=objlst,headerl=sbl.header,

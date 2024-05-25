@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="dados">
+        <br><br>
+            <h1>Events</h1>
+            <img src="/static/images/eventsT.jpg" alt="eventsT" width="300" height="200">
+        <br><br>
+        
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Info</th>
+                <th>Venue</th>
+                <th>Type</th>
+                <th>Remaining Slots</th>
+            </tr>
+            {% for obj in objlst.values() %}
+                    <tr>
+                    <td>{{obj.code}}</td>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.date}}</td>
+                    <td>{{obj.time}}</td>
+                    <td>{{obj.info}}</td>
+                    <td>{{obj.venue_name}}</td>
+                    <td>{{obj.type_name}}</td>
+                    <td>{{obj.remaining_slots}}</td>
+                    </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+    
+{% endblock %}
