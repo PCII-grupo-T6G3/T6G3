@@ -47,7 +47,7 @@ def subform(cname="",submenu=""):
                 cl.last()
                 return render_template("subform.html", butshow=butshow, butedit=butedit,
                             cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                            ulogin=session.get("user"),headerl=sbl.header,
+                            ulogin=session.get("user"),usergroup=session.get('usergroup'),headerl=sbl.header,
                             desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                             submenu=submenu, resul=approval)
             else:
@@ -56,7 +56,7 @@ def subform(cname="",submenu=""):
                 cl.read(filename)
                 return render_template("subform.html", butshow='disabled', butedit='enabled',
                             cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                            ulogin=session.get("user"),headerl=sbl.header,
+                            ulogin=session.get("user"),usergroup=session.get('usergroup'),headerl=sbl.header,
                             desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                             submenu=submenu, resul=approval)
         elif prev_option == 'edit' and option == 'save':
@@ -127,7 +127,7 @@ def subform(cname="",submenu=""):
                     #x = input(f'{lst_att}::')
                     return render_template("subform.html", butshow=butshow, butedit=butedit,
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                                ulogin=session.get("user"),objl=objlst,headerl=sbl.header,
+                                ulogin=session.get("user"),usergroup=session.get('usergroup'),objl=objlst,headerl=sbl.header,
                                 desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                                 submenu=submenu, resul=approval)
                 else:
@@ -136,7 +136,7 @@ def subform(cname="",submenu=""):
                     sbl.read(filename)
                     return render_template("subform.html", butshow='disabled', butedit='disabled_esp',
                                 cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                                ulogin=session.get("user"),objl=objlst,headerl=sbl.header,
+                                ulogin=session.get("user"),usergroup=session.get('usergroup'),objl=objlst,headerl=sbl.header,
                                 desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                                 submenu=submenu, resul=approval)
                 
@@ -159,7 +159,7 @@ def subform(cname="",submenu=""):
                 objl.append(sbl.obj[line])
         return render_template("subform.html", butshow=butshow, butedit=butedit,
                     cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                    ulogin=session.get("user"),objl=objl,headerl=sbl.header,
+                    ulogin=session.get("user"),usergroup=session.get('usergroup'),objl=objl,headerl=sbl.header,
                     desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                     submenu=submenu)
     else:
