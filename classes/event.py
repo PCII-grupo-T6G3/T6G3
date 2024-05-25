@@ -77,10 +77,10 @@ class Event(Gclass):
     #     self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
     
     @date.setter
-    def date(self,data):
+    def date(self, data):
         self._date = data
     @time.setter
-    def time(self,hora):
+    def time(self, hora):
         self._time = hora
     # info property getter method
     @property
