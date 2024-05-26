@@ -122,7 +122,7 @@ def userlogin():
 def getsubm():
     global submenu
     submenu = request.args.get("subm")
-    return render_template("index.html", ulogin=session.get("user"),submenu=submenu)
+    return render_template("index.html", ulogin=session.get("user"),usergroup=session.get('usergroup'),submenu=submenu)
 
 @app.route("/gform/<cname>", methods=["post","get"])
 def gform(cname=''):
@@ -134,14 +134,14 @@ def eventsT():
     submenu = request.args.get("subm")
     Event.read(filename)
     return render_template("eventsT.html",objlst=Event.obj,
-                           ulogin=session.get("user"),submenu=submenu)
+                           ulogin=session.get("user"),usergroup=session.get('usergroup'),submenu=submenu)
 
 @app.route("/feedbackT", methods=["post","get"])
 def feedbackT():
     submenu = request.args.get("subm")
     Feedback.read(filename)
     return render_template("feedbackT.html",objlst=Feedback.obj,
-                           ulogin=session.get("user"),submenu=submenu,
+                           ulogin=session.get("user"),usergroup=session.get('usergroup'),submenu=submenu,
                            Event=Event,Participant=Participant)
 
 @app.route("/gformT/<cname>", methods=["post","get"])
