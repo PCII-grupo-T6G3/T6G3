@@ -29,10 +29,18 @@
         </form>
         <br>
         <h2>{{resul}}</h2>
-        <button id="first" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=first'" class="button1">First</button>
-        <button id="previous" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=previous'" class="button1">Previous</button>
-        <button id="next" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=next'" class="button1">Next</button>
-        <button id="last" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=last'" class="button1">Last</button>
+        
+        {% set hide = False %}
+        {% if usergroup == 'users' and cname == 'Feedback' %}
+            {% set hide = True %}
+        {% endif %}
+        
+        {% if not hide %}       
+                <button id="first" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=first'" class="button1">First</button>
+                <button id="previous" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=previous'" class="button1">Previous</button>
+                <button id="next" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=next'" class="button1">Next</button>
+                <button id="last" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=last'" class="button1">Last</button>
+        {% endif %}
     </div>
 
 {% endblock %}

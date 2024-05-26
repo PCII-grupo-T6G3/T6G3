@@ -1,7 +1,7 @@
 # Class Event
 # Import the generic class
 from classes.gclass import Gclass
-import datetime
+from datetime import datetime as dt
 from classes.venue import Venue
 from classes.type import Type
 
@@ -18,8 +18,8 @@ class Event(Gclass):
     # Class header title
     header = 'Events'
     # field description for use in, for example, in input form
-    des = ['Code','Name','Date', 'Time','Description','Available Slots',\
-           'Venue Code','Type Code']
+    des = ['Code','Name','Date (dd-mm-yyyy)', 'Time (hh:mm)','Description',\
+           'Available Slots','Venue Code','Type Code']
     # Constructor: Called when an object is instantiated
     def __init__(self, code, name, date, time, info, slots, venue_code, type_code, used_slots=0):
         super().__init__()
@@ -36,13 +36,6 @@ class Event(Gclass):
         self._info = info
         self._date = date
         self._time = time
-        # dl = date.split('-')
-        # for i in range(len(dl)):
-        #     dl[i] = int(dl[i])
-        # tl = time.split(':')
-        # for i in range(len(tl)):
-        #     tl[i] = int(tl[i])
-        # self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
         
         self._venue_code = venue_code
         self._venue = ''
@@ -69,13 +62,6 @@ class Event(Gclass):
     @property
     def time(self):
         return self._time
-    # dt property setter method
-    # @dt.setter
-    # def dt(self, date, time):
-    #     dl = date.split('-')
-    #     tl = time.split(':')
-    #     self._dt = datetime.datetime(dl[2],dl[1],dl[0],tl[0],tl[1])
-    
     @date.setter
     def date(self, data):
         self._date = data
@@ -129,12 +115,33 @@ class Event(Gclass):
     #     strprint = strprint[:-1] + "'"
     #     return eval(strprint)
     
+    @staticmethod
+    def is_date(string):
+        try:
+            dt.strptime(string, '%d-%m-%Y')
+            return True
+        except ValueError:
+            return False
+    @staticmethod
+    def is_time(string):
+        try:
+            dt.strptime(string, '%H:%M')
+            return True
+        except ValueError:
+            return False
+    
     def chk_validity(self):
         message = 'Approved!'
+        # Verifica data
+        if not Event.is_date(self._date):
+            message = 'Date not inserted correctly!'
+            return message
+        if not Event.is_time(self._time):
+            message = 'Time not inserted correctly!'
+            return message
         # Verifica o espaço do evento
         if self._venue_code in Venue.obj.keys():
             self._venue = Venue.obj[str(self._venue_code)]
-            print(self._venue)
         else:
             message = 'Venue not found!'
             return message

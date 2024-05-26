@@ -57,14 +57,33 @@ def gform(cname='',submenu=""):
                                 ulogin=session.get("user"),auto_number=cl.auto_number,
                                 submenu=submenu, resul=approval,usergroup=session.get('usergroup'))
             
-        elif prev_option == 'edit' and option == 'save':
+        elif prev_option == 'edit' and option == 'save': # 100% criado por nós
             obj = cl.current()
-            # print(obj, type(obj))
-            # if auto_number = 1 the key stays the same
-            for i in range(cl.auto_number,len(cl.att)):
-                att = cl.att[i]
-                setattr(obj, att, request.form[att])
-            cl.update(getattr(obj, cl.att[0]))
+            strobj_temp = 'temp'
+            for i in range(1,len(cl.att)):
+                strobj_temp += ";" + request.form[cl.att[i]]
+            obj_temp = cl.from_string(strobj_temp)
+            
+            approval = obj_temp.chk_validity()
+            if approval == 'Approved!':
+                cl.obj[getattr(obj, cl.att[0])] = obj_temp
+                obj_temp._code = obj._code
+                del cl.obj['temp']
+                cl.update(getattr(obj, cl.att[0]))
+                cl.read(filename)
+                obj = cl.obj[getattr(obj, cl.att[0])]
+                return render_template("gform.html", butshow=butshow, butedit=butedit,
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),auto_number=cl.auto_number,
+                                submenu=submenu, resul=approval,usergroup=session.get('usergroup'))
+            else:
+                del cl.obj['temp']
+                cl.read(filename)
+                return render_template("gform.html", butshow='disabled', butedit='enabled',
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),auto_number=cl.auto_number,
+                                submenu=submenu, resul=approval,usergroup=session.get('usergroup'))
+            
         else:
             if option == "edit":
                 butshow = "disabled"
@@ -91,7 +110,7 @@ def gform(cname='',submenu=""):
                 return render_template("index.html", ulogin=session.get("user"),usergroup=session.get('usergroup'))
         prev_option = option
         obj = cl.current()
-        if option == 'insert' or len(cl.lst) == 0: # deixar escrever quando se clica em insert
+        if option == 'insert' or len(cl.lst) == 0:
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
