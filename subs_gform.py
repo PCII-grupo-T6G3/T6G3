@@ -59,6 +59,7 @@ def gform(cname='',submenu=""):
             
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
+            # print(obj, type(obj))
             # if auto_number = 1 the key stays the same
             for i in range(cl.auto_number,len(cl.att)):
                 att = cl.att[i]

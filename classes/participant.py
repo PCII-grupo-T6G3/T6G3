@@ -65,6 +65,6 @@ class Participant(Gclass):
             return message
         # Verifica se o telemóvel é um número
         if not self._year.isdigit():
-            message = 'Phone must be a number!'
+            message = 'Year must be a number!'
             return message
         return message

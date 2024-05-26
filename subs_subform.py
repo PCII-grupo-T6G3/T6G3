@@ -99,8 +99,9 @@ def subform(cname="",submenu=""):
                 print(obj_r._event._used_slots)
                 obj_r._event._used_slots -= 1
                 print(obj_r._event._used_slots)
-                Event.update(obj_r._event_code)
-                # Event.read(filename)
+                Event.update(getattr(obj_r._event, Event.att2[0]))
+                Event.read(filename)
+                # x = input(obj_r._event._used_slots)
                 # print(row,lines[row])
                 sbl.remove(lines[row])
             elif option == "addrow":
