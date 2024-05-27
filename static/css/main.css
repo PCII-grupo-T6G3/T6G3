@@ -20,6 +20,15 @@ nav{
     display: inline;
 }
 
+.menu-left, .menu-right {
+    display: inline; 
+}
+
+.menu-right li {
+    margin-right: 5px;
+}
+
+
 .button{
     font-family: Arial;
     font-size: 1em;
