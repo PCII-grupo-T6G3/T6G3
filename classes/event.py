@@ -105,6 +105,10 @@ class Event(Gclass):
     @property
     def remaining_slots(self):
         return self._slots - self._used_slots
+    #mudei isto
+    @remaining_slots.setter
+    def remaining_slots(self, remaining_slots):
+        self._remaining_slots = int(remaining_slots)
     
     # Overload do método str da Gclass para escrever
     # o nome do venue e do type em vez do código

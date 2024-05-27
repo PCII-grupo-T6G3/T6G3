@@ -91,7 +91,7 @@ def subform(cname="",submenu=""):
                 cl.nextrec()
             elif option == "last":
                 cl.last()
-            elif option[:6] == "delrow":
+            elif option[:6] == "delrow": 
                 row = int(option.split("_")[1])
                 obj = cl.current()
                 lines = sbl.getlines(getattr(obj, cl.att[0]))
