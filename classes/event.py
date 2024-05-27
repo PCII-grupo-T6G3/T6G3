@@ -166,8 +166,8 @@ class Event(Gclass):
         objlst = []
         for regist in Registration.obj.values():
             if regist.event_code == self.code:
-                objlst.append(self.code)
-        for obj in objlst:  
+                objlst.append(regist.ticket)
+        for obj in objlst:
             Registration.remove(obj)
         return message
         
