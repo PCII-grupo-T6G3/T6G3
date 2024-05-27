@@ -21,7 +21,7 @@ class Participant(Gclass):
         # Object attributes
         self._code = str(code)
         self._name = name
-        self._year = int(year)
+        self._year = year
         self._phone = str(phone)
         # Add the new object to the Participant list
         Participant.obj[code] = self
@@ -62,4 +62,9 @@ class Participant(Gclass):
         # Verifica se o UP tem 9 digitos
         if len(self._code) != 9:
             message = 'UP must have 9 digits!'
+            return message
+        # Verifica se o telemóvel é um número
+        if not self._year.isdigit():
+            message = 'Year must be a number!'
+            return message
         return message

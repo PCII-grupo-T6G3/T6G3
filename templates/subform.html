@@ -9,13 +9,14 @@
         <img src="/static/images/{{cname}}.jpg" alt="{{cname}}" width="300" height="200">
         <h1>{{header}}</h1>
         <br>
+        <!--
         <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=edit'" class="button1">Edit</button>
         <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=delete'" class="button1">Delete</button>
         <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=insert'" class="button1">Insert</button>
         <button id="save" type="submit" form="form" class = "button1" {{butedit}}>Save</button>
         <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/subform/{{cname}}?option=cancel'" class="button1">Cancel</button>
         <button id="exit" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=exit'" class="button1">Exit</button>
-        <br><br>
+        -->
             <form id="form" action="/subform/{{cname}}?option=save" method="post">
                 {% for key in att %}
                   <label for="{{key}}">{{des[loop.index-1]}}:</label>
@@ -35,6 +36,8 @@
     <br>
     <div class="dados">
         <h2>{{headerl}}</h2>
+        <h3>{{resul}}</h3>
+        <br>
         <table>
             <tr>
               {% for header in desl %}
@@ -42,8 +45,13 @@
                       <th>{{header}}</th>
                   {% endif %}
               {% endfor %}
+              <th>Event Name</th>
+              <th>Ticket</th>
               <td><button id="addrow" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=addrow'" class="button1">+</button></td>
             </tr>
+              {% if butshow == 'disabled' and butedit == 'disabled_esp' %}
+                  {% set objl = objl[:-1] %}
+              {% endif %}
               {% for ob in objl %}
                 <tr>
                   {% for key in attl %}
@@ -51,6 +59,8 @@
                           <td>{{ ob[key] }}</td>
                          {% endif %}
                   {% endfor %}
+                  <td>{{ob._event.name}}</td>
+                  <td>{{ob.ticket}}</td>
                   <td><button id="delrow" type="button" {{butshow}} onclick="window.location.href = '/subform/{{cname}}?option=delrow_{{loop.index-1}}'" class="button1">-</button></td>
                 </tr>
               {% endfor %}                
@@ -67,6 +77,19 @@
                         </form>
                     <tr>
                   {% endif %}
+                  {% if butshow == 'disabled' and butedit == 'disabled_esp' %}
+                  <tr>
+                      <form id="formrow" action="/subform/{{cname}}?option=saverow" method="post">
+                      {% for key in attl %}
+                          {% if loop.index > 1 %}
+                           <td><input type="text" id="{{key}}" name="{{key}}" value="" size="20"/></td>
+                          {% endif %}
+                      {% endfor %}
+                      <td><button id="save" type="submit" form="formrow" class = "button1" >Save</button>
+                          <button id="cancelrow" type="button" onclick="window.location.href = '/subform/{{cname}}?option=cancelrow'" class="button1">Cancel</button></td>
+                      </form>
+                  <tr>
+                {% endif %}
         </table>
     </div>
 

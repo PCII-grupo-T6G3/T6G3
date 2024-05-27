@@ -22,18 +22,26 @@ class Feedback(Gclass):
     def __init__(self, registration_code, feedback):
         super().__init__()
         
-        # verifica integridade do evento e do participante
-        if registration_code in Registration.lst:
-            self._feedback = feedback
-            self._registration_code = registration_code
-            Feedback.obj[self._registration_code] = self
-            Feedback.lst.append(self._registration_code)
-        else:
-            print('Ticket', registration_code, 'not found')
+        self._feedback = feedback
+        self._registration_code = registration_code
+        Feedback.obj[self._registration_code] = self
+        Feedback.lst.append(self._registration_code)
 
     @property
     def registration_code(self):
         return self._registration_code
     @property
+    def code(self):
+        return self._registration_code
+    
+    @property
     def feedback(self):
         return self._feedback
+    
+    def chk_validity(self):
+        message = 'Approved!'
+        # Verifica se o bilhete está correto
+        if self._registration_code not in Registration.lst:
+            message = 'Ticket not found!'
+            return message
+        return message

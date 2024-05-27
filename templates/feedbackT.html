@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="dados">
+        <br><br><br><br>
+            <h1>Feedback</h1>
+            <img src="/static/images/feedback.jpg" alt="feedback" width="300" height="200">
+        <br><br>
+        
+        <table>
+            <tr>
+                <th>Event</th>
+                <th>Participant</th>
+                <th>Feedback</th>
+            </tr>
+            {% for obj in objlst.values() %}
+                    <tr>
+                    <td>{{Event.obj[obj.registration_code[9:]].name}}</td>
+                    <td>{{Participant.obj[obj.registration_code[:9]].name}}</td>
+                    <td>{{obj.feedback}}</td>
+                    </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+    
+{% endblock %}
