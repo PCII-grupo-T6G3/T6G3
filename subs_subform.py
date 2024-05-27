@@ -96,14 +96,32 @@ def subform(cname="",submenu=""):
                 obj = cl.current()
                 lines = sbl.getlines(getattr(obj, cl.att[0]))
                 obj_r = Registration.obj[lines[row]]
-                print(obj_r._event._used_slots)
-                obj_r._event._used_slots -= 1
-                print(obj_r._event._used_slots)
-                Event.update(getattr(obj_r._event, Event.att2[0]))
-                Event.read(filename)
-                # x = input(obj_r._event._used_slots)
-                # print(row,lines[row])
-                sbl.remove(lines[row])
+                approval = obj_r.chk_removal()
+                if approval == 'Deleted!':
+                    print(obj_r._event._used_slots)
+                    obj_r._event._used_slots -= 1
+                    print(obj_r._event._used_slots)
+                    Event.update(getattr(obj_r._event, Event.att2[0]))
+                    sbl.remove(lines[row])
+                    lines = sbl.getlines(getattr(obj, cl.att[0]))
+                    objlst = list()
+                    for line in lines:
+                        objlst.append(sbl.obj[line])
+                    return render_template("subform.html", butshow=butshow, butedit=butedit,
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),usergroup=session.get('usergroup'),headerl=sbl.header,
+                                desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,objl=objlst,
+                                submenu=submenu, resul=approval)
+                else:
+                    objlst = list()
+                    for line in lines:
+                        objlst.append(sbl.obj[line])
+                    return render_template("subform.html", butshow=butshow, butedit=butedit,
+                                cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                ulogin=session.get("user"),usergroup=session.get('usergroup'),headerl=sbl.header,
+                                desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,objl=objlst,
+                                submenu=submenu, resul=approval)
+                    
             elif option == "addrow":
                 butshow = "disabled"
                 butedit = "disabled"

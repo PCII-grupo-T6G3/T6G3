@@ -132,10 +132,11 @@ class Event(Gclass):
     
     def chk_validity(self):
         message = 'Approved!'
-        # Verifica data
+        # Verifica a data
         if not Event.is_date(self._date):
             message = 'Date not inserted correctly!'
             return message
+        # Verifica a hora
         if not Event.is_time(self._time):
             message = 'Time not inserted correctly!'
             return message
@@ -158,3 +159,15 @@ class Event(Gclass):
             message = "The selected venue isn't big enough!"
             return message
         return message
+    
+    def chk_removal(self):
+        message = 'Deleted!'
+        from classes.registration import Registration
+        objlst = []
+        for regist in Registration.obj.values():
+            if regist.event_code == self.code:
+                objlst.append(self.code)
+        for obj in objlst:  
+            Registration.remove(obj)
+        return message
+        

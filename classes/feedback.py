@@ -45,3 +45,7 @@ class Feedback(Gclass):
             message = 'Ticket not found!'
             return message
         return message
+    
+    def chk_removal(self):
+        message = 'Deleted!'
+        return message

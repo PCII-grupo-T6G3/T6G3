@@ -58,3 +58,13 @@ class Venue(Gclass):
     def chk_validity(self):
         message = 'Approved!'
         return message
+    
+    def chk_removal(self):
+        message = 'Deleted!'
+        from classes.event import Event
+        for event in Event.obj.values():
+            if self.code == event.venue_code:
+                message = 'Deletion not possible because one or more events\
+                    have this venue. Please delete them first or change their venue.'
+                return message
+        return message      

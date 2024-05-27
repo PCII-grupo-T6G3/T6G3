@@ -38,8 +38,14 @@ class Registration(Gclass):
     def event_code(self):
         return self._event_code
     @property
+    def event(self):
+        return self._event
+    @property
     def participant_code(self):
         return self._participant_code
+    @property
+    def participant(self):
+        return self._participant
     @property
     def ticket(self):
         return self._ticket
@@ -65,4 +71,8 @@ class Registration(Gclass):
         else:
             message = 'The event is full!'
             return message
+        return message
+    
+    def chk_removal(self):
+        message = 'Deleted!'
         return message

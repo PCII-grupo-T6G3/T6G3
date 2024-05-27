@@ -57,7 +57,7 @@ def logoff():
 def chklogin():
     return lsub.chklogin()
 
-@app.route("/userlogin", methods=["post","get"])
+@app.route("/Userlogin", methods=["post","get"])
 def userlogin():
     return ulsub.userlogin()
 
@@ -75,7 +75,6 @@ def gform(cname=''):
 @app.route("/eventsT", methods=["post","get"])
 def eventsT():
     submenu = request.args.get("subm")
-    Event.read(filename)
     return render_template("eventsT.html",objlst=Event.obj,
                            ulogin=session.get("user"),usergroup=session.get('usergroup'),submenu=submenu)
 

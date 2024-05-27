@@ -1,5 +1,5 @@
 # Event Type
-# Import the generic class
+
 from classes.gclass import Gclass
 
 class Type(Gclass):
@@ -46,10 +46,21 @@ class Type(Gclass):
     def name(self):
         return self._type_name
     @name.setter
-    def name(self, tipo):
-        self._type_name = tipo
+    def name(self, name):
+        self._type_name = name
+        
         
     def chk_validity(self):
         message = 'Approved!'
         return message
+    
+    def chk_removal(self):
+        message = 'Deleted!'
+        from classes.event import Event
+        for event in Event.obj.values():
+            if self.code == event.type_code:
+                message = 'Deletion not possible because one or more events\
+                    have this type. Please delete them first or change their type.'
+                return message
+        return message                
     

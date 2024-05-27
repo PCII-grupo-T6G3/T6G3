@@ -90,9 +90,23 @@ def gform(cname='',submenu=""):
                 butedit = "enabled"
             elif option == "delete":
                 obj = cl.current()
-                cl.remove(obj.code)
-                if not cl.previous():
-                    cl.first()
+                
+                # Criado por nós
+                approval_r = obj.chk_removal()
+                if approval_r == 'Deleted!':
+                    cl.remove(obj.code)
+                    if not cl.previous():
+                        cl.first()
+                    return render_template("gform.html", butshow=butshow, butedit=butedit,
+                                    cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                    ulogin=session.get("user"),auto_number=cl.auto_number,
+                                    submenu=submenu, resul=approval_r,usergroup=session.get('usergroup'))
+                else:
+                    return render_template("gform.html", butshow=butshow, butedit=butedit,
+                                    cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
+                                    ulogin=session.get("user"),auto_number=cl.auto_number,
+                                    submenu=submenu, resul=approval_r,usergroup=session.get('usergroup'))
+                    
             elif option == "insert":
                 butshow = "disabled"
                 butedit = "enabled"

@@ -68,3 +68,15 @@ class Participant(Gclass):
             message = 'Year must be a number!'
             return message
         return message
+    
+    def chk_removal(self):
+        message = 'Deleted!'
+        from classes.registration import Registration
+        for regist in Registration.obj.values():
+            if self.code == regist.participant.code:
+                message = 'Deletion not possible because this participant is\
+                    registered in one or more events. Please delete their\
+                    registrations first.'
+                return message
+        return message
+        
