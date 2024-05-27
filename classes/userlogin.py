@@ -1,4 +1,13 @@
+# -*- coding: utf-8 -*-
+"""
+@author: António Brito / Carlos Bragança
+(2022)
+#objective: class Person
+"""""
+#%% Class User - generic version
+# import sys
 import bcrypt
+# Import the generic class
 from classes.gclass import Gclass
 
 class Userlogin(Gclass):

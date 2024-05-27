@@ -5,7 +5,14 @@
 #objective: subs_gform.py
 
 """""
-from flask import render_template, request, session
+from flask import Flask, render_template, request, session
+from classes.event import Event
+from classes.participant import Participant
+from classes.registration import Registration
+from classes.type import Type
+from classes.venue import Venue
+from classes.feedback import Feedback
+from classes.userlogin import Userlogin
 from datafile import filename
 
 prev_option = ""
