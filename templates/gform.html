@@ -6,8 +6,10 @@
 
 {% block content %}
     <div class = "dados">
-        <img src="/static/images/{{cname}}.jpg" alt="{{cname}}" width="300" height="200">
+        <br>
+        <div style="margin-top: 80px;"></div> <!-- Espaçamento antes do título -->
         <h1>{{header}}</h1>
+        <img src="/static/images/{{cname}}.png" alt="{{cname}}" width="300" height="200">
         <br>
         <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=edit'" class="button1">Edit</button>
         <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/gform/{{cname}}?option=delete'" class="button1">Delete</button>
