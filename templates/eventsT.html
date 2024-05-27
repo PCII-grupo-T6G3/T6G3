@@ -9,16 +9,16 @@
     <div class="dados">
         <br><br><br><br>
             <h1>Events</h1>
-            <img src="/static/images/eventsT.jpg" alt="eventsT" width="300" height="200">
+            <img src="/static/images/eventsT.png" alt="eventsT" width="300" height="200">
         <br><br>
         
         <table>
             <tr>
                 <th>Code</th>
                 <th>Name</th>
-                <th>Date</th>
+                <th class="date-column">Date</th>
                 <th>Time</th>
-                <th>Info</th>
+                <th class="date-column">Info</th>
                 <th>Venue</th>
                 <th>Type</th>
                 <th>Remaining Slots</th>
@@ -27,9 +27,9 @@
                     <tr>
                     <td>{{obj.code}}</td>
                     <td>{{obj.name}}</td>
-                    <td>{{obj.date}}</td>
+                    <td class="date-column">{{obj.date}}</td>
                     <td>{{obj.time}}</td>
-                    <td>{{obj.info}}</td>
+                    <td class="date-column">{{obj.info}}</td>
                     <td>{{obj.venue_name}}</td>
                     <td>{{obj.type_name}}</td>
                     <td>{{obj.remaining_slots}}</td>

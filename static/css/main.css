@@ -1,6 +1,7 @@
 body{
     margin: 0;
     min-height: 300px;
+    padding-bottom: 100px;
 }
 
 nav{
@@ -14,6 +15,17 @@ nav{
     height: 100%;
     background-color: #6CBB95;
 
+}
+
+footer {
+    background-color: #487D64; /* Ajuste a cor conforme necessário */
+    color: #ffffff; /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px 0; /* Ajuste a espessura conforme necessário */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 1em; /* Ajuste o tamanho da fonte conforme necessário */
 }
 
 .menu li{
@@ -35,7 +47,7 @@ nav{
 }
 
 .button:hover{
-    background-color: lightblue;
+    background-color: #487D64;
 }
 
 .dados{
@@ -48,7 +60,10 @@ nav{
         text-decoration: none;
 }
 
-
+.title{
+        font-size: 0.8em; /* Tamanho da fonte menor */
+        margin-top: 20px; /* Espaço acima do título */
+}
 
 .button1{
     font-family: Arial;
@@ -66,7 +81,7 @@ nav{
 }
 
 .button1:hover{
-    background-color: lightblue;
+    background-color: #487D64;
 }
 
 .button1:disabled{
@@ -76,7 +91,7 @@ nav{
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 50%;
+  width: 60%;
   margin-left: auto; 
   margin-right: auto;
 }
@@ -91,6 +106,9 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.date-column {
+    width: 300px; /* Ajuste este valor conforme necessário */
+}
 body{
-  background-image: url(https://i.pinimg.com/564x/33/0c/09/330c0903a27fd02fcd3c53f8d56b6f2a.jpg)
+  background-image: url('/static/images/background3.png');
 }
