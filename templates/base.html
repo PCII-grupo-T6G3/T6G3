@@ -10,6 +10,11 @@
     <body>
         <nav>
             <ul class="menu">
+                <li>
+                    <a href="/" class="image-button">
+                        <img src="/static/images/logo_branco.png" alt="Home" class="home-icon">
+                    </a>
+                </li>
                 {% if ulogin == None %}
                     <li><a class="button" href="/login">Login</a></li>
                 {% else %}
@@ -21,9 +26,7 @@
                         <li><a class="button" href="/submenu?subm=registration">Registration</a></li>
                         
                         <li><a class="button" style="color:lightblue">User: {{ulogin}}</a></li>
-                        
-                        <br><br>
-                        
+                                                
                         {% if submenu == "registration" %}
                             <li><a class="button" href="/subform/Participant_Registration?subm=registration">Registration</a></li>
                             <li><a class="button" href="/gform/Feedback?option=insert">Feedback</a></li>

@@ -9,13 +9,30 @@ nav{
     float: left;
 }
 
-.menu{
-    margin: 0;
-    padding: 8px;
-    height: 100%;
-    background-color: #6CBB95;
-
+.menu {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 8px;
+  height: 100%;
+  background-color: #6CBB95;
+  list-style-type: none;
 }
+
+.menu-left,
+.menu-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-right {
+  margin-left: auto;
+}
+
+.menu li {
+  display: inline;
+}
+
 
 footer {
     background-color: #487D64; /* Ajuste a cor conforme necessário */
@@ -109,6 +126,19 @@ tr:nth-child(even) {
 .date-column {
     width: 300px; /* Ajuste este valor conforme necessário */
 }
+
 body{
   background-image: url('/static/images/background3.png');
+}
+
+.image-button {
+  display: inline-block;
+  padding: 0;
+  margin-right: 10px; /* Adjust as necessary */
+}
+
+.home-icon {
+  width: 80px; /* Adjust size as necessary */
+  height: 64px; /* Adjust size as necessary */
+  vertical-align: middle;
 }
