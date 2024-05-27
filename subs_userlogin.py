@@ -7,7 +7,6 @@
 """
 
 from flask import render_template, request, session
-from classes.gclass import Gclass
 from classes.userlogin import Userlogin
 
 prev_option = ''
