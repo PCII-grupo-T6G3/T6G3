@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eventSphere</title>
+    <link rel="icon" href="/static/images/logoescuro.png" type="image/x-icon">
     {% block title %}
     {% endblock %}
   </head>
@@ -43,7 +44,8 @@
       {% if ulogin != None %}
         {% if submenu == "event" %}
           <ul class="submenu">
-                <li><a class="button" href="/eventsT?subm=event">Events Overview</a></li>
+                <li><a class="button" href="/events?subm=event">Events Overview</a></li>
+                <li><a class="button" href="/gform/Event?subm=event">Events</a></li>
                 <li><a class="button" href="/gform/Venue?subm=event">Venues</a></li>
                 <li><a class="button" href="/gform/Type?subm=event">Types</a></li>
           </ul>
@@ -51,7 +53,7 @@
         {% if submenu == "registration" %}
           <ul class="submenu">
             <li><a class="button" href="/subform/Participant_Registration?subm=registration">Registration</a></li>
-            <li><a class="button" href="/gform/Feedback">Feedback</a></li>
+            <li><a class="button" href="/gform/Feedback?subm=registration">Feedback</a></li>
             <li><a class="button" href="/feedbackT?subm=registration">Feedback Overview</a></li>
           </ul>
         {% endif %}
